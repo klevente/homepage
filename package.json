@@ -1,0 +1,27 @@
+{
+  "name": "homepage",
+  "version": "1.0.4",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "dev": "svelte-kit dev --host",
+    "build": "svelte-kit build",
+    "package": "svelte-kit package",
+    "preview": "svelte-kit preview",
+    "postbuild": "npx move-cli build/404/index.html build/404.html && npx rimraf build/404"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0-next.23",
+    "@sveltejs/kit": "next",
+    "mdsvex": "^0.9.8",
+    "move-cli": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.45.1",
+    "svelte": "^3.44.0",
+    "svelte-preprocess": "^4.10.1"
+  },
+  "dependencies": {
+    "rehype-autolink-headings": "^6.1.0",
+    "rehype-slug": "^5.0.0"
+  },
+  "type": "module"
+}

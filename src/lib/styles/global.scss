@@ -1,0 +1,42 @@
+@import './_vars.scss';
+@import './_themes.scss';
+@import './_fonts.scss';
+@import './_typography.scss';
+
+html {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    width: 98vw;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+body {
+    font-family: var(--body-font);
+    margin: 0 auto;
+    background: var(--background);
+    color: var(--ink);
+    max-width: 60rem;
+
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 150ms;
+}
+
+main {
+    padding: 1rem;
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: var(--radius);
+}
+
+svg {
+    fill: currentColor;
+
+    &:hover {
+        color: var(--gray);
+    }
+}
