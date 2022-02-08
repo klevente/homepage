@@ -8,7 +8,6 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 const config = {
 	kit: {
 		adapter: adapter(),
-		target: '#svelte',
 	},
 
 	extensions: ['.svelte', '.md'],
