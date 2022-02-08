@@ -145,7 +145,7 @@ In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avo
 <svelte:head>
     <script>
         // while this worked in a previous version of SvelteKit,
-        // it is not happy with import `$app/env` as of the most recent version
+        // it is not happy with importing `$app/env` as of the most recent version
         /* import { browser } from '$app/env'; */
 
         // check location by querying whether the `document` global is available,
