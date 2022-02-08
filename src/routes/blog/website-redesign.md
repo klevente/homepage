@@ -144,9 +144,13 @@ In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avo
 <!-- routes/__layout.svelte -->
 <svelte:head>
     <script>
-        import { browser } from '$app/env';
+        // while this worked in a previous version of SvelteKit,
+        // it is not happy with import `$app/env` as of the most recent version
+        /* import { browser } from '$app/env'; */
 
-        if (browser) {
+        // check location by querying whether the `document` global is available,
+        // as importing the `browser` variable no longer works
+        if (/* browser */ typeof document !== 'undefined') {
             if (localStorage.theme === 'dark') {
                 document.documentElement.classList.add('dark');
             }
