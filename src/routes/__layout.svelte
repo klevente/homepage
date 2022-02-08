@@ -14,9 +14,10 @@
 
 <svelte:head>
     <script>
-        import { browser } from '$app/env';
+        // somehow this broke in the most recent SvelteKit version
+        /*import { browser } from '$app/env';*/
 
-        if (browser) {
+        if (/*browser*/ typeof document !== 'undefined') {
             if (localStorage.theme === 'dark') {
                 document.documentElement.classList.add('dark');
             }
