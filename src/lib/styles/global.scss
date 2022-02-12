@@ -5,8 +5,15 @@
 
 html {
     min-height: 100vh;
+    @media screen and (min-width: $sm) {
+        margin-left: calc(100vw - 100%);
+        margin-right: 0;
+    }
+
     scroll-behavior: smooth;
-    width: 98vw;
+    @media screen and (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
 }
 
 *, *:before, *:after {
@@ -21,9 +28,11 @@ body {
     color: var(--ink);
     max-width: 60rem;
 
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    transition-duration: 150ms;
+    @media screen and (prefers-reduced-motion: no-preference) {
+        transition-property: background-color, border-color, color, fill, stroke;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+        transition-duration: 150ms;
+    }
 }
 
 main {
