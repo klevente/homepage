@@ -23,10 +23,13 @@
     position: absolute;
     left: 0;
     top: -2px; /* push the image up a bit so it is centered */
-    -webkit-transition: opacity var(--time) ease-in-out;
-    -moz-transition: opacity var(--time) ease-in-out;
-    -o-transition: opacity var(--time) ease-in-out;
-    transition: opacity var(--time) ease-in-out;
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      -webkit-transition: opacity var(--time) ease-in-out;
+      -moz-transition: opacity var(--time) ease-in-out;
+      -o-transition: opacity var(--time) ease-in-out;
+      transition: opacity var(--time) ease-in-out;
+    }
   }
 
   .transparent {
