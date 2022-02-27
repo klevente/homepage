@@ -6,8 +6,7 @@
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
-    "postbuild": "npx move-cli build/404/index.html build/404.html && npx rimraf build/404"
+    "preview": "svelte-kit preview"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0-next.26",

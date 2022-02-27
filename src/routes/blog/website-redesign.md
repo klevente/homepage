@@ -224,19 +224,7 @@ In addition to colors, I also wanted the site's icons to resemble the ones found
 
 Finally, I wanted to create a dedicated error page the Nginx would use when someone navigates to a page that doesn't exist, instead of the default built-in one. This however required some additional research, as `adapter-static` currently does not support pre-rendering a custom error page by itself. I also had to look up how to attach a custom error page to a subdomain inside Nginx's config.
 
-For the first problem, I found this [Reddit comment](https://www.reddit.com/r/sveltejs/comments/o1tr4w/comment/h726jte/?utm_source=reddit&utm_medium=web2x&context=3) that outlines how to create a static `404` page that can be wired up for Nginx to use. This means I had to create a `404.svelte` page with the desired content, then write a `postbuild` script in `package.json` that copies out the resulting HTML from `404/index.html` into `404.html`, while also removing the residual empty `404` folder that is just clutter. In code, this looks something like this (you need to `npm -D move-cli rimraf` to use it).
-
-```json
-/* package.json */
-{
-  ...
-  "scripts": {
-    ...
-    "postbuild": "npx move-cli build/404/index.html build/404.html && npx rimraf build/404"
-  },
-  ...
-}
-```
+For the first problem, I found this [Reddit comment](https://www.reddit.com/r/sveltejs/comments/o1tr4w/comment/h726jte/?utm_source=reddit&utm_medium=web2x&context=3) that outlines how to create a static `404` page that can be wired up for Nginx to use. This basically means I had to create a `404.svelte` page with the desired content (in older versions of SvelteKit/`adapter-static`, I also had to create a `postbuild` script that moves the resulting `404/index.html` file out to the project root as `404.html`, but that is no longer necessary, as the adapter generates the `404.html` file by default instead of putting it inside a subdirectory).
 
 In order to configure Nginx to use this page as the `404` error display, I followed [this](https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04) guide to a certain extent. Instead of configuring a global error page for all sites hosted, I only added the following code snippet my site's Nginx config:
 
