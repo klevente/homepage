@@ -15,16 +15,20 @@
 </section>
 <section class="about-me">
     <h2>About Me</h2>
-    <p>Backend Java developer at Generali and graduate student at BME, living in Budapest. Previously held seminar
-        courses in Java and backend development for undegrad students. Also worked on creating and grading midterms/homework
+    <p>
+        Software Developer at <a href="https://snapsoft.io" target="_blank" rel="noopener noreferrer">SnapSoft</a>, former full-stack developer at Generali. BME IT graduate, currently living in Budapest.
+    </p>
+    <p>
+        Previously held seminar courses in Java and backend development for undegrad students. Also worked on creating and grading midterms/homework
         for a graduate course involving formal methods.
     </p>
-    <p>Currently I like tinkering with
+    <p>
+        Currently I like tinkering with
         <code>Kotlin</code>,
         <code>Svelte</code>,
         <code>Rust</code>,
         <code>WebAssembly</code> and functional programming
-        during my studies and for fun. You can take a look at my personal projects on
+        during for fun. You can take a look at my personal projects on
         <a href="https://github.com/klevente" target="_blank" rel="noopener noreferrer">Github</a>.
     </p>
 </section>
