@@ -37,7 +37,6 @@ li {
       content: '#';
       position: absolute;
       left: -1ch;
-      top: 0;
       line-height: 1;
       opacity: 0;
       color: var(--accent);
@@ -48,6 +47,26 @@ li {
   &:hover .icon-link::before {
     opacity: 1;
   }
+}
+
+h2 .icon-link::before {
+  top: 0.2ch;
+}
+
+h3 .icon-link::before {
+  top: 0.3ch;
+}
+
+h4 .icon-link::before {
+  top: 0.2ch;
+}
+
+h5 .icon-link::before {
+  top: 0.1ch;
+}
+
+h6 .icon-link::before {
+  top: 0.1ch;
 }
 
 pre, code {
