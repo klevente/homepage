@@ -1,6 +1,6 @@
 {
   "name": "homepage",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "CC-BY-4.0",
   "scripts": {
     "dev": "svelte-kit dev --host",
