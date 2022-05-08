@@ -7,7 +7,7 @@
 
 <figure>
     <img {src} {alt} {width}>
-    {#if !!caption}
+    {#if caption}
         <figcaption>{caption}</figcaption>
     {/if}
 </figure>
