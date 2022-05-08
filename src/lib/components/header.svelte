@@ -17,7 +17,7 @@
   header {
     padding: 0.5rem 1rem;
     background: var(--accent);
-    border-radius: var(--radius);
+    border-radius: var(--radius) var(--radius) 0 0;
 
     display: flex;
     flex-wrap: wrap;
