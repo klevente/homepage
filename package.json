@@ -9,14 +9,14 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^1.0.0-next.26",
+    "@sveltejs/adapter-static": "^1.0.0-next.29",
     "@sveltejs/kit": "next",
-    "mdsvex": "^0.9.8",
+    "mdsvex": "^0.10.5",
     "move-cli": "^2.0.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.45.2",
-    "svelte": "^3.46.4",
-    "svelte-preprocess": "^4.10.4"
+    "sass": "^1.51.0",
+    "svelte": "^3.48.0",
+    "svelte-preprocess": "^4.10.6"
   },
   "dependencies": {
     "rehype-autolink-headings": "^6.1.1",
