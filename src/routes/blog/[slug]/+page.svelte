@@ -10,3 +10,9 @@
   <p>Published: {date}</p>
   <svelte:component this={content} />
 </article>
+
+<style lang="scss">
+  :global(code) {
+    font-family: 'Cozette';
+  }
+</style>
