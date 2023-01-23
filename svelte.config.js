@@ -9,6 +9,9 @@ const config = {
   // for more information about preprocessors
   preprocess: [
     sveltePreprocess({
+      scss: {
+        prependData: `@import 'src/lib/styles/vars.scss';`,
+      },
       postcss: {
         plugins: [autoprefixer()],
       },
