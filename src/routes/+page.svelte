@@ -1,3 +1,11 @@
+<script lang="ts">
+  import { formatTitle } from '$lib/utils/format-title';
+</script>
+
+<svelte:head>
+  <title>{formatTitle('Home')}</title>
+</svelte:head>
+
 <div class="head">
   <div>
     <h1>Levente Krizsán</h1>
@@ -20,9 +28,9 @@
 <section>
   <h3>Personally:</h3>
   Hobby coder.<br />
-  Aviation enthusiast with a pilot's license.<br />
   Tea drinker.<br />
-  Music enjoyer, playing the violin and guitar, occasional DJ.<br />
+  Aviation enthusiast with a pilot's license.<br />
+  Music enjoyer, violin and guitar player, occasional DJ.<br />
   Lover of old technology and aesthetics (as seen here).
 </section>
 
@@ -35,6 +43,9 @@
   }
   h1 {
     margin: 0;
+  }
+  h3 {
+    margin-bottom: 4px;
   }
 
   .head {
