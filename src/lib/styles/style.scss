@@ -53,7 +53,7 @@
 
 body {
   font-family: "MS Sans Serif";
-  font-size: .9rem;
+  font-size: var(--base-font-size);
   font-smooth: never;
   -webkit-font-smoothing: none;
   background-color: #008080;

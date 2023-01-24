@@ -74,6 +74,7 @@
   }
 
   article {
-    padding: 12px;
+    // 12px is good for home page
+    padding: 3px;
   }
 </style>

@@ -1,10 +1,8 @@
 import prettyBytes from 'pretty-bytes';
 
-const prettyBytesOptions = {
-  spaces: 0,
-  uppercaseKilo: true,
-};
-
-export function formatFileSize(size: number): string {
-  return prettyBytes(size, prettyBytesOptions);
+export function formatFileSize(size: number, withSpace: boolean = false): string {
+  return prettyBytes(size, {
+    spaces: withSpace ? 1 : 0,
+    uppercaseKilo: true,
+  });
 }
