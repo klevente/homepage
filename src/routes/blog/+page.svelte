@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { formatTitle } from '$lib/utils/format-title';
+  import { formatFileSize } from '$lib/utils/format-file-size';
   import type { PageData } from './$types';
 
   export let data: PageData;
-  const { posts } = data;
+  const { posts, totalSize } = data;
 </script>
+
+<svelte:head>
+  <title>{formatTitle('Blog')}</title>
+</svelte:head>
 
 <section>
   <table>
@@ -22,7 +28,7 @@
             <img src="/images/icons/notepad-16.ico" alt="icon" />
             <a href={post.path}>{post.metadata.title}</a>
           </td>
-          <td class="file-size">0KB</td>
+          <td class="file-size">{formatFileSize(post.metadata.size)}</td>
           <td>Text Document</td>
           <td>{post.metadata.date}</td>
         </tr>
@@ -31,7 +37,7 @@
   </table>
   <div class="summary">
     <div>{posts.length} object(s) (plus 1 hidden)</div>
-    <div>19.1KB</div>
+    <div>{formatFileSize(totalSize)}</div>
     <div>My Computer</div>
   </div>
 </section>

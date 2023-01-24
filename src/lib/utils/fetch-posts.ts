@@ -1,16 +1,29 @@
-import type { Metadata } from '../types';
+import fs from 'fs/promises';
+import type { Metadata, MetadataWithSize } from '../types';
 
-export async function fetchPosts() {
+export type PostData = {
+  metadata: MetadataWithSize;
+  path: string;
+};
+
+export async function fetchPosts(): Promise<PostData[]> {
   const posts = import.meta.glob('/src/routes/blog/*.md');
   const iterablePostFiles = Object.entries(posts);
 
   return Promise.all(
     iterablePostFiles.map(async ([path, resolver]) => {
-      const { metadata } = (await resolver()) as { metadata: Metadata };
-      const postPath = path.slice(11, -3);
+      const relativePath = path.slice(1);
+      const postPath = relativePath.slice(10, -3);
+      const [{ metadata }, { size }] = await Promise.all([
+        resolver() as Promise<{ metadata: Metadata }>,
+        fs.stat(relativePath),
+      ]);
 
       return {
-        metadata,
+        metadata: {
+          ...metadata,
+          size,
+        },
         path: postPath,
       };
     }),
