@@ -1,17 +1,17 @@
 @font-face {
   font-family: "MS Sans Serif";
-  src: url("/fonts/ms-sans-serif.woff2") format("woff2"),
-  url("/fonts/ms-sans-serif.woff") format("woff"),
-  url("/fonts/ms-sans-serif.ttf") format("truetype");
+  /*src: url("/fonts/ms-sans-serif.woff2") format("woff2"),
+  url("/fonts/ms-sans-serif.woff") format("woff"),*/
+  src: url("/fonts/ms-sans-serif.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "MS Sans Serif";
-  src: url("/fonts/ms-sans-serif-bold.woff2") format("woff2"),
-  url("/fonts/ms-sans-serif-bold.woff") format("woff"),
-  url("/fonts/ms-sans-serif-bold.ttf") format("truetype");
+  /*src: url("/fonts/ms-sans-serif-bold.woff2") format("woff2"),
+  url("/fonts/ms-sans-serif-bold.woff") format("woff"),*/
+  src: url("/fonts/ms-sans-serif-bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
@@ -60,8 +60,8 @@ body {
 }
 
 main {
-  max-width: 30rem;
   margin: 4rem auto 0;
+  max-width: 30rem;
   /*border: 1px solid red;
   background-color: #c0c0c0;*/
 }

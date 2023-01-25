@@ -1,0 +1,55 @@
+/* code blocks */
+pre, code {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  tab-size: 2;
+
+  text-shadow: none;
+  font-family: 'Cozette', monospace;
+  font-style: normal;
+  font-size: 1rem;
+
+  direction: ltr;
+  text-align: left;
+  word-spacing: normal;
+  /*word-break: break-word;*/ /* might need this at some point */
+}
+
+pre[class*='language-'] {
+  background-color: var(--paper);
+  position: relative;
+  // padding: 1.5rem 0.75rem 1rem;
+  padding: 4px;
+
+  /*background: var(--code-background);
+  color: var(--code-ink);*/
+  overflow-x: auto;
+
+  border-top: 1px solid var(--outline-br-light);
+  border-right: 1px solid var(--outline-tl-light);
+  border-bottom: 1px solid var(--outline-tl-light);
+  border-left: 1px solid var(--outline-br-light);
+
+  box-shadow: inset 0 1px 0 0 var(--outline-br-dark), inset -1px 0 0 0 var(--outline-tl-dark),
+  inset 0 -1px 0 0 var(--outline-tl-dark), inset 1px 0 0 0 var(--outline-br-dark);
+
+
+  &:before {
+    content: 'Code';
+    font-family: 'MS Sans Serif';
+
+    background-color: var(--main);
+    border-top: 1px solid var(--main);
+    border-bottom: 1px solid var(--outline-br-dark);
+    border-left: 1px solid var(--outline-br-dark);
+    border-bottom-left-radius: 2px;
+
+    box-shadow: var(--outline-br-light), inset 1px 0 0 0 var(--outline-br-light);;
+
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding: 0 8px 0 8px;
+  }
+}
