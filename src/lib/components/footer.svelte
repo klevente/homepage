@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  const year = new Date().getFullYear();
 </script>
 
-<footer>Footer</footer>
+<footer>&copy {year}</footer>

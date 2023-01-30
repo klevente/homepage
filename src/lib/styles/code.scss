@@ -1,55 +1,191 @@
-/* code blocks */
-pre, code {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  tab-size: 2;
+:root {
+  --code-background: var(--paper);
+  --lang-background: var(--accent);
+  --code-ink: #000000;
 
-  text-shadow: none;
-  font-family: 'Cozette', monospace;
-  font-style: normal;
-  font-size: 1rem;
+  --comment: #9db9c8;
+  --property: #558097;
+  --string: #808080;
+  --operator: #000000;
+  --variable: #13293d;
+  --function: #108225;
+  --keyword: #414141;
 
-  direction: ltr;
-  text-align: left;
-  word-spacing: normal;
-  /*word-break: break-word;*/ /* might need this at some point */
+  --highlight: #ffff99;
+  --highlight-accent: #ffcc99;
+
+  &.dark {
+    --code-background: var(--paper);
+    --lang-background: var(--accent);
+    --code-ink: var(--ink);
+
+    --comment: #819ca6;
+    --property: #9db9c8;
+    --string: #c0c0c0;
+    --operator: #dedede;
+    --variable: #dedede;
+    --function: #b4ccab;
+    --keyword: #cedce3;
+
+    --highlight: #705810;
+    --highlight-accent: #ffcc99;
+  }
 }
 
+/* code blocks */
 pre[class*='language-'] {
-  background-color: var(--paper);
   position: relative;
-  // padding: 1.5rem 0.75rem 1rem;
-  padding: 4px;
+  padding: 1.25rem 0.5ch .25rem;
+  // padding: 0 .75rem;
+  // border-radius: 0 var(--radius) var(--radius);
 
-  /*background: var(--code-background);
-  color: var(--code-ink);*/
+  // background: var(--accent);
+  // color: var(--code-ink);
   overflow-x: auto;
-
-  border-top: 1px solid var(--outline-br-light);
-  border-right: 1px solid var(--outline-tl-light);
-  border-bottom: 1px solid var(--outline-tl-light);
-  border-left: 1px solid var(--outline-br-light);
-
-  box-shadow: inset 0 1px 0 0 var(--outline-br-dark), inset -1px 0 0 0 var(--outline-tl-dark),
-  inset 0 -1px 0 0 var(--outline-tl-dark), inset 1px 0 0 0 var(--outline-br-dark);
+  // background-color: #fcfdfd;
+  border: 1px solid var(--accent);
 
 
   &:before {
     content: 'Code';
-    font-family: 'MS Sans Serif';
-
-    background-color: var(--main);
-    border-top: 1px solid var(--main);
-    border-bottom: 1px solid var(--outline-br-dark);
-    border-left: 1px solid var(--outline-br-dark);
-    border-bottom-left-radius: 2px;
-
-    box-shadow: var(--outline-br-light), inset 1px 0 0 0 var(--outline-br-light);;
+    font-weight: 600;
 
     top: 0;
-    right: 0;
+    left: 0;
     position: absolute;
+    background-color: var(--accent);
     padding: 0 8px 0 8px;
+  }
+}
+
+pre.language-bash:before {
+  content: 'shell';
+}
+
+pre.language-css:before {
+  content: 'css';
+}
+
+pre.language-fs:before {
+  content: 'Project files';
+}
+
+pre.language-html:before {
+  content: 'html';
+}
+
+pre.language-js:before,
+pre.language-javascript:before {
+  content: 'javascript';
+}
+
+pre.language-json:before {
+  content: 'json'
+}
+
+pre.language-markdown:before {
+  content: 'markdown';
+}
+
+pre.language-nginx:before {
+  content: 'nginx config';
+}
+
+pre.language-scss:before {
+  content: 'scss';
+}
+
+pre.language-svelte:before {
+  content: 'svelte';
+}
+
+pre.language-rust:before {
+  content: 'rust';
+}
+
+pre.language-toml:before {
+  content: 'toml'
+}
+
+pre.language-ts:before,
+pre.language-typescript:before {
+  content: 'typescript';
+}
+
+pre.language-yaml:before,
+pre.language-yml:before {
+  content: 'yaml'
+}
+
+// colors
+.token {
+  &.comment,
+  &.prolog,
+  &.doctype,
+  &.cdata {
+    color: var(--comment);
+  }
+
+  &.punctuation {
+    color: var(--operator);
+  }
+
+  &.property,
+  &.tag,
+  &.boolean,
+  &.number,
+  &.constant,
+  &.symbol,
+  &.deleted {
+    color: var(--property);
+  }
+
+  &.deleted {
+    text-decoration: line-through;
+  }
+
+  &.selector,
+  &.attr-name,
+  &.string,
+  &.char,
+  &.builtin,
+  &.inserted {
+    color: var(--string);
+  }
+
+  &.operator,
+  &.entity,
+  &.url,
+  &.language-css .token.string,
+  &.style .token.string {
+    color: var(--operator);
+  }
+
+  &.atrule,
+  &.attr-value,
+  &.keyword {
+    color: var(--keyword);
+    font-weight: 600;
+  }
+
+  &.function {
+    color: var(--function);
+  }
+
+  &.regex,
+  &.important,
+  &.variable {
+    color: var(--variable);
+  }
+
+  &.important,
+  &.bold {
+    font-weight: 600;
+  }
+  &.italic {
+    font-style: italic;
+  }
+  &.entity {
+    cursor: help;
   }
 }

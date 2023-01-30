@@ -34,19 +34,20 @@ The first thing I did after getting an initial working prototype in place is to 
 ```js
 /* lib/util/posts.js */
 export async function fetchPosts() {
-    return Promise.all(
-        Object.entries(import.meta.glob('../../routes/blog/*.md'))
-            .map(async ([path, resolver]) => {
-                const { metadata } = await resolver();
-                // cut off path until start of the filename, also removing the file extension
-                const slug = path.slice(12, -3);
-                return { ...metadata, slug };
-            })
-    );
+  return Promise.all(
+    Object.entries(import.meta.glob('../../routes/blog/*.md'))
+      .map(async ([path, resolver]) => {
+        const { metadata } = await resolver();
+        // cut off path until start of the filename, also removing the file extension
+        const slug = path.slice(12, -3);
+        return { ...metadata, slug };
+    }),
+  );
 }
 
 export async function fetchPostsSorted() {
-    return fetchPosts().then(posts => posts.sort((a, b) => new Date(b.date) - new Date(a.date)));
+  return fetchPosts()
+    .then((posts) => posts.sort((a, b) => new Date(b.date) - new Date(a.date)));
 }
 ```
 
@@ -55,12 +56,12 @@ export async function fetchPostsSorted() {
 import { fetchPostsSorted } from '$lib/util/posts.js';
 
 export async function get() {
-    const sortedPosts = await fetchPostsSorted();
-
-    return {
-        // this returns a `200 OK` response with the supplied `body`
-        body: sortedPosts
-    };
+  const sortedPosts = await fetchPostsSorted();
+  
+  return {
+    // this returns a `200 OK` response with the supplied `body`
+    body: sortedPosts
+  };
 }
 ```
 
@@ -70,10 +71,10 @@ In order to accommodate both light and dark mode *enthusiasts*, I knew I had to 
 
 ```scss
 :root {
-    /* light theme colors */
-    --paper: #ffffff;
-    --ink: #000000;
-    
+  /* light theme colors */
+  --paper: #ffffff;
+  --ink: #000000;
+  
   &.dark {
     /* dark theme colors */
     --paper: #000000;
@@ -95,42 +96,42 @@ import { browser } from '$app/env';
 export const theme = createThemeStore();
 
 function createThemeStore() {
-    // get the saved theme from `localStorage`
-    const stored = getStoredTheme();
-    // create the store, use a light theme if no stored value was available
-    const { subscribe, update } = writable(stored || 'light');
+  // get the saved theme from `localStorage`
+  const stored = getStoredTheme();
+  // create the store, use a light theme if no stored value was available
+  const { subscribe, update } = writable(stored || 'light');
 
-    // this line creates a custom store that can integrate with Svelte,
-    // as it only requires that a valid `subscribe` method is present on an object
-    // in order to classify as a store
-    return {
-        subscribe,
-        // return a helper function as well for toggling themes
-        toggle: () => {
-            update(value => value === 'dark' ? 'light' : 'dark');
-        },
-    };
+  // this line creates a custom store that can integrate with Svelte,
+  // as it only requires that a valid `subscribe` method is present on an object
+  // in order to classify as a store
+  return {
+    subscribe,
+    // return a helper function as well for toggling themes
+    toggle: () => {
+      update(value => value === 'dark' ? 'light' : 'dark');
+    },
+  };
 }
 
 function getStoredTheme() {
-    return browser ? localStorage.theme : null;
+  return browser ? localStorage.theme : null;
 }
 
-// create a subsription that manages the `.dark` class on the `html` DOM element 
-// and saves the current theme into `localStorage` every time the internal `value` changes
+// create a subsription that manages the `.dark` class on the `html` DOM element and
+// saves the current theme into `localStorage` every time the internal `value` changes
 theme.subscribe(value => {
-    // this check is required because SvelteKit also runs code on its internal server,
-    // which does not have access to the browser's API, so it must be checked that
-    // the code actually runs in the browser before using `document`, `window`, etc.
-    if (browser) {
-        const rootClasses = document.documentElement.classList;
-        if (value === 'dark') {
-            rootClasses.add('dark');
-        } else {
-            rootClasses.remove('dark');
-        }
-        localStorage.theme = value;
+  // this check is required because SvelteKit also runs code on its internal server,
+  // which does not have access to the browser's API, so it must be checked that
+  // the code actually runs in the browser before using `document`, `window`, etc.
+  if (browser) {
+    const rootClasses = document.documentElement.classList;
+    if (value === 'dark') {
+      rootClasses.add('dark');
+    } else {
+      rootClasses.remove('dark');
     }
+    localStorage.theme = value;
+  }
 });
 ```
 
@@ -143,19 +144,19 @@ In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avo
 ```svelte
 <!-- routes/__layout.svelte -->
 <svelte:head>
-    <script>
-        // while this worked in a previous version of SvelteKit,
-        // it is not happy with importing `$app/env` as of the most recent version
-        /* import { browser } from '$app/env'; */
+  <script>
+    // while this worked in a previous version of SvelteKit,
+    // it is not happy with importing `$app/env` as of the most recent version
+    /* import { browser } from '$app/env'; */
 
-        // check location by querying whether the `document` global is available,
-        // as importing the `browser` variable no longer works
-        if (/* browser */ typeof document !== 'undefined') {
-            if (localStorage.theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            }
-        }
-    </script>
+    // check location by querying whether the `document` global is available,
+    // as importing the `browser` variable no longer works
+    if (/* browser */ typeof document !== 'undefined') {
+      if (localStorage.theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  </script>
 </svelte:head>
 ```
 
@@ -164,41 +165,45 @@ The last piece of the puzzle is actually having a component on screen that calls
 ```svelte
 <!-- lib/components/theme-picker.svelte -->
 <script>
-    import { theme } from '$lib/util/theme';
+  import { theme } from '$lib/util/theme';
 </script>
 
 <div class="theme-selector" on:click={() => theme.toggle()} title="Switch Theme">
-    <img src="/images/dark.png" alt="Dark theme icon">
-    <!-- 
-        only add the `transparent` class to the light theme icon if the current theme is dark,
-        which will show the dark theme icon, else the light theme icon 
-        will cover up the dark one as it will be visible.
-        this updates every time the `theme` store changes as it is prefixed by `$`
-     -->
-    <img class:transparent="{$theme === 'dark'}" src="/images/light.png" alt="Light theme icon">
+  <img src="/images/dark.png" alt="Dark theme icon">
+  <!-- 
+    only add the `transparent` class to the light theme icon
+    if the current theme is dark, which will show the dark theme icon,
+    else the light theme icon  will cover up the dark one as it will be visible.
+    this updates every time the `theme` store changes as it is prefixed by `$`
+  -->
+  <img
+    class:transparent="{$theme === 'dark'}"
+    src="/images/light.png"
+    alt="Light theme icon"
+  >
 </div>
 
 <style lang="scss">
-  .theme-selector {
-    cursor: pointer;
-    position: relative;
-    width: 30px; /* required as the underlying `img` is `position: absolute;` */
-  }
+.theme-selector {
+  cursor: pointer;
+  position: relative;
+  width: 30px; /* required as the underlying `img` is `position: absolute;` */
+}
 
-  img {
-    margin: 0;
-    position: absolute;
-    left: 0;
-    top: -2px; /* push the image up a bit so it is centered */
-    -webkit-transition: opacity 150ms ease-in-out;
-    -moz-transition: opacity 150ms ease-in-out;
-    -o-transition: opacity 150ms ease-in-out;
-    transition: opacity 150ms ease-in-out;
-  }
+img {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: -2px; /* push the image up a bit so it is centered */
+  -webkit-transition: opacity 150ms ease-in-out;
+  -moz-transition: opacity 150ms ease-in-out;
+  -o-transition: opacity 150ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
+}
 
-  .transparent {
-    opacity: 0;
-  }
+.transparent {
+  opacity: 0;
+}
 </style>
 ```
 
@@ -231,13 +236,13 @@ In order to configure Nginx to use this page as the `404` error display, I follo
 ```nginx
 # /etc/nginx/sites-available/name-of-site #
 server {
-    ...
-    error_page 404 /404.html # name of the file inside the site's folder
-    location = /404.html { 
-        root /var/www/name-of-site;
-        internal; # do not host the file, just use it as an error page
-    }
-    ...
+  ...
+  error_page 404 /404.html # name of the file inside the site's folder
+  location = /404.html { 
+    root /var/www/name-of-site;
+    internal; # do not host the file, just use it as an error page
+  }
+  ...
 }
 ```
 

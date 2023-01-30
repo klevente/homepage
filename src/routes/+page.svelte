@@ -1,5 +1,9 @@
 <script lang="ts">
   import { formatTitle } from '$lib/utils/format-title';
+
+  function changeTheme() {
+    document.querySelector('html')?.classList.toggle('dark');
+  }
 </script>
 
 <svelte:head>
@@ -12,42 +16,53 @@
       <h1>Levente Krizsán</h1>
       <h2>Software Engineer</h2>
     </div>
-    <img src="/images/64x64.png" alt="profile" />
+    <img src="/images/profile-64x64.png" alt="Profile Picture" />
   </div>
+  <h3>Professionally:</h3>
   <section>
-    <h3>Professionally:</h3>
     Full-stack software engineer at
-    <a href="https://snapsoft.io">SnapSoft</a>, working for
-    <a href="https://moonfare.com">Moonfare</a>.
+    <a rel="noopener noreferrer" target="_blank" href="https://snapsoft.io">SnapSoft</a>, working
+    for
+    <a rel="noopener noreferrer" target="_blank" href="https://moonfare.com">Moonfare</a>.
   </section>
+  <h3>Previously:</h3>
   <section>
-    <h3>Previously:</h3>
-    Full-stack software engineer at Generali.<br />
-    Budapest University of Technology Computer Engineering graduate.<br />
-    Seminar instructor at Budapest University of Technology.
+    <ul>
+      <li>Full-stack software engineer at Generali.</li>
+      <li>Budapest University of Technology and Economics Computer Engineering graduate.</li>
+      <li>Seminar instructor at Budapest University of Technology and Economics.</li>
+    </ul>
   </section>
+  <h3>Personally:</h3>
   <section>
-    <h3>Personally:</h3>
-    Hobby coder.<br />
-    Tea drinker.<br />
-    Aviation enthusiast with a pilot's license.<br />
-    Music enjoyer, violin and guitar player, occasional DJ.<br />
-    Lover of old technology and aesthetics (as seen here).
+    <ul>
+      <li>Hobby coder.</li>
+      <li>Tea drinker.</li>
+      <li>Aviation enthusiast with a pilot's license.</li>
+      <li>Music enjoyer, violin and guitar player, occasional DJ.</li>
+    </ul>
+  </section>
+  <h3>Contact:</h3>
+  <section>
+    <ul>
+      <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://github.com/klevente">GitHub</a>
+      </li>
+      <li>
+        <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/klevente_"
+          >@klevente_
+        </a>
+      </li>
+      <li>Email: in my GitHub profile</li>
+    </ul>
   </section>
 </div>
 
 <style lang="scss">
-  .content {
-    margin: 8px 7px 12px;
-    padding: 20px;
-
-    border-top: 1px solid var(--outline-tl-light);
-    border-right: 1px solid var(--outline-br-dark);
-    border-bottom: 1px solid var(--outline-br-dark);
-    border-left: 1px solid var(--outline-tl-light);
-
-    box-shadow: inset 0 1px 0 0 var(--outline-tl-dark), inset -1px 0 0 0 var(--outline-br-light),
-      inset 0 -1px 0 0 var(--outline-br-light), inset 1px 0 0 0 var(--outline-tl-dark);
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
   }
 
   img {
@@ -55,16 +70,5 @@
     width: 128px;
     height: 128px;
     image-rendering: pixelated;
-  }
-  h1 {
-    margin: 0;
-  }
-  h3 {
-    margin-bottom: 4px;
-  }
-
-  .head {
-    display: flex;
-    justify-content: space-between;
   }
 </style>
