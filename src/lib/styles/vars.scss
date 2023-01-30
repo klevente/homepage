@@ -1,0 +1,14 @@
+:root {
+  --font-size: 1.25rem;
+  --font-size-header: 1rem;
+
+  --paper: #ffffff;
+  --ink: #000000;
+  --accent: #9db9c8;
+
+  &.dark {
+    --paper: #414141;
+    --ink: #dedede;
+    --accent: #558097;
+  }
+}

@@ -1,49 +1,49 @@
 :root {
-  --code-background: #e5e7eb;
-  /*--lang-background: #cef3f3;*/
+  --code-background: var(--paper);
   --lang-background: var(--accent);
-  --code-ink: #070707;
+  --code-ink: #000000;
 
-  --comment: #999999;
-  --property: #9d6a89;
-  --string: #86615c;
-  --operator: #0e1c36;
+  --comment: #9db9c8;
+  --property: #558097;
+  --string: #808080;
+  --operator: #000000;
   --variable: #13293d;
-  --function: #a53f2b;
-  --keyword: #018184;
+  --function: #108225;
+  --keyword: #414141;
 
   --highlight: #ffff99;
   --highlight-accent: #ffcc99;
 
   &.dark {
-    --code-background: var(--blue-dark);
+    --code-background: var(--paper);
     --lang-background: var(--accent);
-    --code-ink: var(--pastel-white);
+    --code-ink: var(--ink);
 
-    --comment: #857c8d;
-    --property: #aa78a6;
-    --string: #a37871;
-    --operator: #dcdfe4;
-    --variable: #f3f4f6;
-    --function: #d58936;
-    --keyword: var(--cyan-dark);
+    --comment: #819ca6;
+    --property: #9db9c8;
+    --string: #c0c0c0;
+    --operator: #dedede;
+    --variable: #dedede;
+    --function: #b4ccab;
+    --keyword: #cedce3;
 
     --highlight: #705810;
     --highlight-accent: #ffcc99;
   }
 }
 
-/* styles for all code blocks and inline code can be found in `./_typography.scss` */
-
 /* code blocks */
 pre[class*='language-'] {
   position: relative;
-  padding: 1.5rem 0.75rem 1rem;
-  border-radius: 0 var(--radius) var(--radius);
+  padding: 1.25rem 0.5ch .25rem;
+  // padding: 0 .75rem;
+  // border-radius: 0 var(--radius) var(--radius);
 
-  background: var(--code-background);
-  color: var(--code-ink);
+  // background: var(--accent);
+  // color: var(--code-ink);
   overflow-x: auto;
+  // background-color: #fcfdfd;
+  border: 1px solid var(--accent);
 
 
   &:before {
@@ -53,14 +53,13 @@ pre[class*='language-'] {
     top: 0;
     left: 0;
     position: absolute;
-    background: var(--lang-background);
+    background-color: var(--accent);
     padding: 0 8px 0 8px;
-    border-radius: 0 0 var(--radius) 0;
   }
 }
 
 pre.language-bash:before {
-  content: 'command line';
+  content: 'shell';
 }
 
 pre.language-css:before {
@@ -108,11 +107,17 @@ pre.language-toml:before {
   content: 'toml'
 }
 
+pre.language-ts:before,
+pre.language-typescript:before {
+  content: 'typescript';
+}
+
 pre.language-yaml:before,
 pre.language-yml:before {
   content: 'yaml'
 }
 
+// colors
 .token {
   &.comment,
   &.prolog,
@@ -160,6 +165,7 @@ pre.language-yml:before {
   &.attr-value,
   &.keyword {
     color: var(--keyword);
+    font-weight: 600;
   }
 
   &.function {
@@ -182,26 +188,4 @@ pre.language-yml:before {
   &.entity {
     cursor: help;
   }
-}
-
-/* line highlight */
-pre[data-line] {
-  position: relative;
-}
-pre[class*='language-'] > code[class*='language-'] {
-  position: relative;
-  z-index: 1;
-}
-.line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-top: 1em;
-  z-index: 0;
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-
-  background: var(--highlight);
-  box-shadow: inset 5px 0 0 var(--highlight-accent);
 }

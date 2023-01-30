@@ -1,6 +1,6 @@
 ---
 title: Webassembly Synthesizer
-date: 2021-01-26
+date: "2021-01-26"
 excerpt: Creating a working synth with Rust using WASM
 ---
 
@@ -68,8 +68,8 @@ As the worklet is essentially located in a separate thread, communication requir
 ### Webpack
 
 Webpack handles the bundling and packaging of the project, as it can be easily customized using its plugin system, from which 2 are required:
-* `IgnorePlugin`: Webpack must not bundle files containing `AudioWorklet`s, as they are separate entities from the main project, not requiring bundling and import resolving
-* `CopyWebpackPlugin`: instead, these files need to be copied into the output package intact; compiled WASM files and bindings are also copied this way because they are used inside `AudioWorklet` (otherwise they could be bundled)
+-`IgnorePlugin`: Webpack must not bundle files containing `AudioWorklet`s, as they are separate entities from the main project, not requiring bundling and import resolving
+-`CopyWebpackPlugin`: instead, these files need to be copied into the output package intact; compiled WASM files and bindings are also copied this way because they are used inside `AudioWorklet` (otherwise they could be bundled)
 
 ### AudioWorklet, WASM with Webpack
 
@@ -91,10 +91,10 @@ Firstly, the backend part of the syntesizer is presented: how it generates and u
 #### Oscillators
 
 The basis of electronic music creation are oscillators; they are components which can create sound waves of different types, mainly using periodic functions. The current version of the synth supports 4 different types, from left to right:
-* `sine`: the trusty sine function
-* `square`: implemented by taking the sign of the sine function
-* `triangle`: implemented with sine and asin
-* `noise`: using random number generation
+-`sine`: the trusty sine function
+-`square`: implemented by taking the sign of the sine function
+-`triangle`: implemented with sine and asin
+-`noise`: using random number generation
 
 <ImageList images={[
     ['/images/posts/wasm-synth/sine.png', 'Sine Wave', '160px'],
@@ -106,10 +106,10 @@ The basis of electronic music creation are oscillators; they are components whic
 Each oscillator returns 128 samples upon request, as the synthesis happens digitally. For this, the mathematical functions are sampled at 48 kHz, which is the standard sample rate defined by the AudioWorkletProcessor API.
 
 Oscillators require 4 parameters to function:
-* `t`: the current time (of the first sample)
-* `freq_hz`: oscillator frequency in Hz
-* `lfo_amplitude`: the amplitude of the LFO (see below)
-* `lfo_freq_hz`: the frequency of the LFO in Hz (see below)
+- `t`: the current time (of the first sample)
+- `freq_hz`: oscillator frequency in Hz
+- `lfo_amplitude`: the amplitude of the LFO (see below)
+- `lfo_freq_hz`: the frequency of the LFO in Hz (see below)
 
 ##### LFO
 
@@ -128,10 +128,10 @@ For starters, instruments in real life take time to produce sound at their highe
 An envelope is a function that determines the volume of a sound wave at a given time. There are different versions available, but the project only support a single, but more complex one - the ADSR envelope.
 
 As its name suggests, an ADSR envelope consists of 4 distinct phases. These are:
-* `attack`: the "spool-up" part of the sound, where it constantly gains volume
-* `delay`: a small decrease in volume after the initial peak (mostly noticeable in plucked instruments)
-* `sustain`: the normalized state of the note
-* `release`: a gradual volume decrease at the end of the note's life
+- `attack`: the "spool-up" part of the sound, where it constantly gains volume
+- `delay`: a small decrease in volume after the initial peak (mostly noticeable in plucked instruments)
+- `sustain`: the normalized state of the note
+- `release`: a gradual volume decrease at the end of the note's life
 
 <ImageList images={[
 ['/images/posts/wasm-synth/adsr.png', 'ADSR', '200px'],
@@ -152,7 +152,7 @@ Instruments jump up an abstraction level and use actual notes instead of operati
 
 ```rust
 pub fn piano_scale(note_id: u32) -> f64 {
-    440.0 * 1.0594630943592952645618252949463_f64.powi(note_id as i32 - 49)
+  440.0 * 1.0594630943592952645618252949463_f64.powi(note_id as i32 - 49)
 }
 ```
 
@@ -170,10 +170,10 @@ The first implemented feature is an interactive polyphonic piano keyboard, which
 
 On the Rust side, the keyboard holds a boolean array that represents which keys are pressed at a given time. Additionally, it also stores which notes are currently playing. When a new sample block is required, the keyboard first updates its notes array by comparing it to the pressed keys, which can result in these outcomes:
 
-* no note, but key is pressed: this means the key has just been pressed, so add a new note to the notes array
-* note found and key is pressed: no action necessary
-* note found, key pressed and note is in release phase: "reactivate" the note by resetting its envelope
-* note found but key is not pressed: the key has just been released, so activate release phase on the envelope
+- no note, but key is pressed: this means the key has just been pressed, so add a new note to the notes array
+- note found and key is pressed: no action necessary
+- note found, key pressed and note is in release phase: "reactivate" the note by resetting its envelope
+- note found but key is not pressed: the key has just been released, so activate release phase on the envelope
 
 These operations are implemented as modifying the on and off timestamps of the corresponding `Note` instance, not directly manipulating the envelope itself, to allow extensibility.
 
@@ -192,8 +192,8 @@ Sequencers need to be very punctual, as their sole job is to provide notes at th
 ```rust
 self.elapsed_time += DELTA_TIME;
 if self.elapsed_time >= self.beat_time {
-    self.elapsed_time -= self.beat_time;
-    // start new notes ...
+  self.elapsed_time -= self.beat_time;
+  // start new notes ...
 }
 ```
 
@@ -231,7 +231,7 @@ However, returning arrays this way is not optimal because the output is copied f
 
 ```rust
 pub fn get_ptr(&self) -> *const f64 {
-    self.out_samples.as_ptr()
+  self.out_samples.as_ptr()
 }
 ```
 ```javascript
@@ -248,10 +248,10 @@ this.masterPtr = this.synthbox.get_master_vol_array_ptr();
 this.master = new Float64Array(this.memory.buffer, this.masterPtr, 128);
 // ...
 if (parameters['master'].length > 1) {
-    this.master.set(parameters['master']);
+  this.master.set(parameters['master']);
 } else {
-    // for a constant volume, create a constant array
-    this.master.fill(parameters['master'][0], 0, 128);
+  // for a constant volume, create a constant array
+  this.master.fill(parameters['master'][0], 0, 128);
 }
 // call WASM function using master
 ```
@@ -274,16 +274,16 @@ The simplest one of the 3, updating the sequencer is achieved by sending differe
 ```javascript
 // UI Thread
 worklet.port.postMessage({ 
-    type: 'update_pattern',
-    index: channelIndex,
-    pattern: channelPattern 
+  type: 'update_pattern',
+  index: channelIndex,
+  pattern: channelPattern 
 });
 
 // Worklet
 // ...
 case 'update_pattern':
-    this.synthbox.update_channel_pattern(e.data.index, e.data.pattern);
-    break;
+  this.synthbox.update_channel_pattern(e.data.index, e.data.pattern);
+  break;
 ```
 
 Of course, the UI thread also updates itself and the DOM to reflect any changes made, but this is pretty standard so no explanation is needed. Also, every update apart from changing tempo or time signature is instantly applied (even channel addition/removal), which is very convenient. The latter cases require a full reset because it would break internal data structures (timing variables and length of samples), so it is better to have a clean slate for that.

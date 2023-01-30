@@ -1,45 +1,60 @@
-<script>
-    import ThemePicker from './theme-picker.svelte';
+<script lang="ts">
+  import ThemePicker from '$lib/components/theme-picker.svelte';
 </script>
 
 <header>
-    <a href="/">klevente.dev</a>
-
-    <nav>
-        <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li aria-hidden="true"><ThemePicker /></li>
-        </ul>
-    </nav>
+  <nav>
+    <a class="home-link" href="/">
+      <img src="/images/icons/computer-16.ico" alt="Home Icon" />Home
+    </a>
+    <span />
+    <a href="/uses">
+      <img src="/images/icons/computer-magnifying-glass-16.ico" alt="Uses Icon" />Uses
+    </a>
+    <a href="/blog">
+      <img src="/images/icons/blog-16.ico" alt="Blog Icon" />Blog
+    </a>
+    <ThemePicker />
+  </nav>
 </header>
 
 <style lang="scss">
-  header {
-    padding: 0.5rem 1rem;
-    background: var(--accent);
-    border-radius: var(--radius) var(--radius) 0 0;
-
+  nav {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 12px;
 
+    background-color: var(--accent);
+    // background-color: #d0e3d3;
+    padding: 4px 8px;
+    align-items: start;
+    height: 20px;
+
+    user-select: none;
+
+    font-size: var(--font-size-header);
+  }
+  span {
+    flex-grow: 1;
   }
 
-  ul {
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    gap: 1rem;
+  img {
+    image-rendering: pixelated;
+    position: relative;
+    top: 3px;
+    margin-right: 4px;
   }
 
   a {
+    color: var(--ink);
+    font-weight: bold;
     text-decoration: none;
-    color: inherit;
-    font-family: var(--mono-font);
-    font-weight: 700;
 
     &:hover {
       text-decoration: underline;
+    }
+
+    &.home-link {
+      position: relative;
     }
   }
 </style>

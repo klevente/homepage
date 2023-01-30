@@ -1,0 +1,29 @@
+<script lang="ts">
+  import type { PageData } from './$types';
+  import { formatTitle } from '$lib/utils/format-title.js';
+
+  import '$lib/styles/blog.scss';
+  import '$lib/styles/code.scss';
+
+  export let data: PageData;
+  const { title, date, content } = data;
+</script>
+
+<svelte:head>
+  <title>{formatTitle(title)}</title>
+</svelte:head>
+
+<article class="post">
+  <div class="heading">
+    <h1>{title}</h1>
+    <time datetime={date}>
+      <img src="/images/icons/calendar-16.ico" alt="Calendar Icon" /> {date}</time
+    >
+  </div>
+  <div class="content">
+    <svelte:component this={content} />
+  </div>
+</article>
+
+<style lang="scss">
+</style>

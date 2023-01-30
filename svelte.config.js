@@ -1,30 +1,31 @@
 import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
+import sveltePreprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import autoprefixer from 'autoprefixer';
 
 /** @type {import('@sveltejs/kit').Config} */
-export default {
-	kit: {
-		adapter: adapter(),
-	},
+const config = {
+  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
+  // for more information about preprocessors
+  preprocess: [
+    sveltePreprocess({
+      scss: {
+        prependData: `@import 'src/lib/styles/vars.scss';`,
+      },
+      postcss: {
+        plugins: [autoprefixer()],
+      },
+    }),
+    mdsvex({
+      extensions: ['.md'],
+    }),
+  ],
 
-	extensions: ['.svelte', '.md'],
+  extensions: ['.svelte', '.md'],
 
-	preprocess: [
-		preprocess({
-			scss: {
-				prependData: `@import 'src/lib/styles/_vars.scss';`
-			},
-		}),
-		mdsvex({
-			extensions: ['.md'],
-			layout: 'src/routes/blog/_post.svelte',
-			rehypePlugins: [
-				rehypeSlug, // adds IDs to headings
-				rehypeAutolinkHeadings, // add links to headings that have IDs
-			],
-		}),
-	],
+  kit: {
+    adapter: adapter(),
+  },
 };
+
+export default config;

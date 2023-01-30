@@ -1,0 +1,35 @@
+@import './typography.scss';
+
+html {
+  min-height: 100vh;
+  @media screen and (min-width: 1024px) {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+
+  scroll-behavior: smooth;
+  @media screen and (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  max-width: 50rem;
+  margin: 0 auto;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 150ms;
+  }
+}
+
+main {
+  padding: 12px;
+}
+
+footer {
+  padding: 8px;
+}
