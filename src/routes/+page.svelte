@@ -1,9 +1,5 @@
 <script lang="ts">
   import { formatTitle } from '$lib/utils/format-title';
-
-  function changeTheme() {
-    document.querySelector('html')?.classList.toggle('dark');
-  }
 </script>
 
 <svelte:head>
