@@ -12,7 +12,6 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^1.0.0-next.90",
     "@sveltejs/adapter-static": "^1.0.5",
     "@sveltejs/kit": "^1.0.0-next.587",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -24,7 +23,6 @@
     "mdsvex": "^0.10.6",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
-    "pretty-bytes": "github:klevente/pretty-bytes#new-options",
     "sass": "^1.57.1",
     "svelte": "^3.54.0",
     "svelte-check": "^2.9.2",
