@@ -12,7 +12,7 @@
     <h1>Levente Krizsán</h1>
     <h2>Software Engineer</h2>
   </div>
-  <img slot="right" class="header-image" src="/images/profile-64x64.png" alt="Profile Picture" />
+  <img slot="right" class="header-image" src="/images/profile-64x64.png" alt="Profile" />
 </PageHeading>
 <h3>Professionally:</h3>
 <section>
@@ -53,12 +53,6 @@
 </section>
 
 <style lang="scss">
-  .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-  }
-
   img {
     width: 128px;
     height: 128px;

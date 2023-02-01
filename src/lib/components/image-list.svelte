@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
   import Image from './image.svelte';
-  export let images;
+
+  export let images: [string, string, string][];
 </script>
 
 <div class="img-list">
