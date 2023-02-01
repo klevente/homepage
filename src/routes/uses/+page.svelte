@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatTitle } from '$lib/utils/format-title';
+  import PageHeading from '$lib/components/page-heading.svelte';
 </script>
 
 <svelte:head>
@@ -7,11 +8,15 @@
 </svelte:head>
 
 <article>
-  <div class="head">
-    <!--for some reason the font size of this is wrong-->
-    <h1>Stuff I Use</h1>
-    <img src="/images/icons/computer-magnifying-glass-32.ico" alt="Uses Icon" />
-  </div>
+  <PageHeading>
+    <h1 slot="left">Stuff I Use</h1>
+    <img
+      slot="right"
+      class="header-image"
+      src="/images/icons/computer-magnifying-glass-32.ico"
+      alt="Uses Icon"
+    />
+  </PageHeading>
 
   <h2>Development</h2>
 
@@ -141,16 +146,4 @@
 </article>
 
 <style lang="scss">
-  .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  img {
-    display: block;
-    width: 64px;
-    height: 64px;
-    image-rendering: pixelated;
-  }
 </style>

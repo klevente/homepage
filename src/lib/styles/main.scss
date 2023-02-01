@@ -33,3 +33,10 @@ main {
 footer {
   padding: 8px;
 }
+
+.header-image {
+  display: block;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}

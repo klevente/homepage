@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatTitle } from '$lib/utils/format-title';
+  import PageHeading from '$lib/components/page-heading.svelte';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -10,10 +11,10 @@
   <title>{formatTitle('Blog')}</title>
 </svelte:head>
 
-<div class="head">
-  <h1>Blog</h1>
-  <img src="/images/icons/blog-32.ico" alt="Blog Icon" />
-</div>
+<PageHeading>
+  <h1 slot="left">Blog</h1>
+  <img slot="right" class="header-image" src="/images/icons/blog-32.ico" alt="Blog Icon" />
+</PageHeading>
 <section>
   <ul>
     {#each posts as post}
@@ -33,19 +34,6 @@
 </section>
 
 <style lang="scss">
-  .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  img {
-    display: block;
-    width: 64px;
-    height: 64px;
-    image-rendering: pixelated;
-  }
-
   ul {
     list-style-image: url('/images/icons/notepad-16.ico');
     padding-left: 20px;
