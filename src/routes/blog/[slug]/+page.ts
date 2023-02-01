@@ -4,7 +4,7 @@ import type { Empty } from '$lib/types';
 import type { Metadata } from '$lib/utils/fetch-posts';
 
 export const load = (async ({ params }) => {
-  const post = (await import(`../${params.slug}.md`)) as {
+  const post = (await import(`../../../content/posts/${params.slug}.md`)) as {
     metadata: Metadata;
     default: SvelteComponentTyped<Empty, Empty, Empty>;
   };

@@ -10,12 +10,12 @@ export type PostData = {
 };
 
 export async function fetchPosts(): Promise<PostData[]> {
-  const posts = import.meta.glob('/src/routes/blog/*.md');
+  const posts = import.meta.glob('/src/content/posts/*.md');
   const iterablePostFiles = Object.entries(posts);
 
   return Promise.all(
     iterablePostFiles.map(async ([path, resolver]) => {
-      const postPath = path.slice(11, -3);
+      const postPath = '/blog' + path.slice(path.lastIndexOf('/'), -3);
       const { metadata } = await (resolver() as Promise<{ metadata: Metadata }>);
       return {
         metadata,
