@@ -6,20 +6,26 @@
   }
 </script>
 
-<div class="theme-selector" on:click={toggleTheme} title="Switch Theme">
+<button class="theme-selector" on:click={toggleTheme} title="Switch Theme">
   <img src="/images/icons/theme-dark.ico" alt="Dark theme icon" />
   <img
     class:transparent={$theme === 'dark'}
     src="/images/icons/theme-light.ico"
     alt="Light theme icon"
   />
-</div>
+</button>
 
 <style lang="scss">
   .theme-selector {
     cursor: pointer;
     position: relative;
     width: 16px; /* required as the underlying `img` is `position: absolute;` */
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
   }
   img {
     image-rendering: pixelated;
