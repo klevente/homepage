@@ -37,6 +37,7 @@
   ul {
     list-style-image: url('/images/icons/notepad-16.ico');
     padding-left: 20px;
+    image-rendering: pixelated;
   }
 
   li:not(:last-child) {
