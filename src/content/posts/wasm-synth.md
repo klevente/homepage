@@ -1,12 +1,12 @@
 ---
 title: Webassembly Synthesizer
-date: "2021-01-26"
+date: '2021-01-26'
 excerpt: Creating a working synth with Rust using WASM
 ---
 
 <script>
-    import Image from '$lib/components/image.svelte';
-    import ImageList from '$lib/components/image-list.svelte';
+  import Image from '$lib/components/image.svelte';
+  import ImageList from '$lib/components/image-list.svelte';
 </script>
 
 ## Introduction
@@ -40,6 +40,7 @@ However, in the past few years, a new contender arrived on the horizon of non-ga
 Of course, Rust being a general programming language, only provides a "traditional" compiler out-of-the-box, which can generate x86/ARM code. For WASM, a 3rd-party compiler called `wasm-bindgen` can be used, which provides compilation to WASM and two-way interaction with JavaScript.
 
 The #1 feature of `wasm-bindgen` however, is its ability to create JavaScript and TypeScript bindings for the compiled Rust code, making function calls and object management really easy and streamlined. This process is as follows:
+
 1. Create the project using the tutorial found on the `wasm-bindgen` website
 2. Implement performance critical algorithms/procedures in Rust
 3. If required, import JS functionality, e.g. `console.log` for debugging and logging
@@ -53,6 +54,7 @@ The #1 feature of `wasm-bindgen` however, is its ability to create JavaScript an
 Audio processing is a notorious example of a real-time process, as it is heavily based on timing and frequencies. This is why such programs often use a dedicated sound processing thread, where the sound card can request fixed-size sample blocks to be played at the right time. Achieving this correctly in a browser is (was?) difficult, as JavaScript runs on a single thread, apart from Web Workers, that can provide some form of concurrency.
 
 However, a new approach called AudioWorklet possesses the tools and functionality that is required for such low-level audio processing and synthesis tasks. An AudioWorklet can be regarded as a digital signal processor, that outputs its processed input signals. What is more, this processing is done in an entirely different scope, called `AudioWorkletGlobalScope`, which is basically a background thread exclusive to audio-related tasks, only providing audio-related functionality. Here, the Web Audio API will call the worklet's `process(input, output, params)` method when a new sample block is needed. Creating one can be achieved with the steps below:
+
 1. Create a JavaScript file with a class that extends `AudioWorkletProcessor` in it
 2. Define the process method, which writes 128 samples (a 128-long `number[]`) into the `output` parameter (there can be more than one output, this requires special handling)
 3. Return `true` from the method, or return `false` if the processor's operation is finished
@@ -68,8 +70,9 @@ As the worklet is essentially located in a separate thread, communication requir
 ### Webpack
 
 Webpack handles the bundling and packaging of the project, as it can be easily customized using its plugin system, from which 2 are required:
--`IgnorePlugin`: Webpack must not bundle files containing `AudioWorklet`s, as they are separate entities from the main project, not requiring bundling and import resolving
--`CopyWebpackPlugin`: instead, these files need to be copied into the output package intact; compiled WASM files and bindings are also copied this way because they are used inside `AudioWorklet` (otherwise they could be bundled)
+
+- `IgnorePlugin`: Webpack must not bundle files containing `AudioWorklet`s, as they are separate entities from the main project, not requiring bundling and import resolving
+- `CopyWebpackPlugin`: instead, these files need to be copied into the output package intact; compiled WASM files and bindings are also copied this way because they are used inside `AudioWorklet` (otherwise they could be bundled)
 
 ### AudioWorklet, WASM with Webpack
 
@@ -78,7 +81,6 @@ The combination of the above techniques did not go without hassle, as combining 
 The first important step was to realize that the processor and WASM files must not be bundled with the main project, as they are loaded dynamically at runtime. Unfortunately, this results in another caveat: Webassembly can only be loaded asyncronously, but `await` and `.then` are not available inside the `AudioWorkletGlobalScope` (rembember, this is an entirely different execution environment, only providing access to sound-related types and functionality). This means that the binary must be loaded in the main thread, then passed into the processor using the worklet's `messagePort`.
 
 Another problem comes up when instantiating the binary inside the worklet, as it fails to find the `TextDecoder` and `TextEncoder` objects, required for transporting strings between JS and WASM. Turns out these types are not available inside `AudioWorkletGlobalScope`, but are absolutely crucial, as my sequencer implementation defines channel patterns using strings. It is also very important for logging, as `console.log` cannot work inside Rust when `TextDecoder` is not present. The problem can be fixed by providing a standalone implementation of these objects and importing those in the beginning of the binding file generated by `wasm-pack`. For this, I modified my build script to prepend the appropriate import in the beginning.
-
 
 ## Implementation
 
@@ -90,22 +92,19 @@ Firstly, the backend part of the syntesizer is presented: how it generates and u
 
 #### Oscillators
 
-The basis of electronic music creation are oscillators; they are components which can create sound waves of different types, mainly using periodic functions. The current version of the synth supports 4 different types, from left to right:
--`sine`: the trusty sine function
--`square`: implemented by taking the sign of the sine function
--`triangle`: implemented with sine and asin
--`noise`: using random number generation
+The basis of electronic music creation are oscillators; they are components which can create sound waves of different types, mainly using periodic functions. The current version of the synth supports 4 different types, from left to right: -`sine`: the trusty sine function -`square`: implemented by taking the sign of the sine function -`triangle`: implemented with sine and asin -`noise`: using random number generation
 
 <ImageList images={[
-    ['/images/posts/wasm-synth/sine.png', 'Sine Wave', '160px'],
-    ['/images/posts/wasm-synth/square.png', 'Square Wave', '160px'],
-    ['/images/posts/wasm-synth/triangle.png', 'Triangle Wave', '160px'],
-    ['/images/posts/wasm-synth/noise.png', 'Noise', '160px'],
+  ['/images/posts/wasm-synth/sine.png', 'Sine Wave', '160px'],
+  ['/images/posts/wasm-synth/square.png', 'Square Wave', '160px'],
+  ['/images/posts/wasm-synth/triangle.png', 'Triangle Wave', '160px'],
+  ['/images/posts/wasm-synth/noise.png', 'Noise', '160px'],
 ]} />
 
 Each oscillator returns 128 samples upon request, as the synthesis happens digitally. For this, the mathematical functions are sampled at 48 kHz, which is the standard sample rate defined by the AudioWorkletProcessor API.
 
 Oscillators require 4 parameters to function:
+
 - `t`: the current time (of the first sample)
 - `freq_hz`: oscillator frequency in Hz
 - `lfo_amplitude`: the amplitude of the LFO (see below)
@@ -128,6 +127,7 @@ For starters, instruments in real life take time to produce sound at their highe
 An envelope is a function that determines the volume of a sound wave at a given time. There are different versions available, but the project only support a single, but more complex one - the ADSR envelope.
 
 As its name suggests, an ADSR envelope consists of 4 distinct phases. These are:
+
 - `attack`: the "spool-up" part of the sound, where it constantly gains volume
 - `delay`: a small decrease in volume after the initial peak (mostly noticeable in plucked instruments)
 - `sustain`: the normalized state of the note
@@ -220,8 +220,9 @@ The UI thread manages the HTML, CSS and user-specific event handling. It is also
 The `AudioWorkletProcessor`, in this case called `WasmWorkletProcessor` is responsible for capturing user events coming from the main thread and forwarding them to the WASM code contained inside it. Its `process(input, output, parameters)` method gets called by the sound hardware whenever a new sample package is required, where the appropriate WASM function is called that creates the new sample block, which is then passed to the sound card as output.
 
 Communicating with this component can be achieved in 2 ways:
-* `worklet.port.postMessage({...})`: the UI thread can post arbitrary JS objects through the messagePort, which the processor can catch by supplying an `onmessage` function to its own port. In the app, every message must contain a `type` attribute to distinguish between different message types. This method works best when data that changes rarely is supplied. Almost all communication is achieved using the messagePort, apart from sending the master volume
-* `AudioParam`: the processor can define a special method where parameter types can be declared that can be set for this particular component. These parameters are then available in the `parameters` parameter of the `process()` method. On the main thread, a reference can be acquired for the parameter using the `worklet.parameters.get(paramName)` method, on which different operations are available to update its value. Parameters are handy when a parameter changes frequently, even between individual samples, meaning that it can vary between a scalar and a 128-long array. This is how master volume handling is implemented
+
+- `worklet.port.postMessage({...})`: the UI thread can post arbitrary JS objects through the messagePort, which the processor can catch by supplying an `onmessage` function to its own port. In the app, every message must contain a `type` attribute to distinguish between different message types. This method works best when data that changes rarely is supplied. Almost all communication is achieved using the messagePort, apart from sending the master volume
+- `AudioParam`: the processor can define a special method where parameter types can be declared that can be set for this particular component. These parameters are then available in the `parameters` parameter of the `process()` method. On the main thread, a reference can be acquired for the parameter using the `worklet.parameters.get(paramName)` method, on which different operations are available to update its value. Parameters are handy when a parameter changes frequently, even between individual samples, meaning that it can vary between a scalar and a 128-long array. This is how master volume handling is implemented
 
 ##### WASM
 
@@ -234,6 +235,7 @@ pub fn get_ptr(&self) -> *const f64 {
   self.out_samples.as_ptr()
 }
 ```
+
 ```javascript
 this.samplesPtr = this.synthbox.get_ptr();
 this.samples = new Float64Array(this.memory.buffer, this.samplesPtr, 128);
@@ -271,12 +273,13 @@ As mentioned before, the master volume is updated using the `AudioParam` feature
 ##### Updating the Sequencer
 
 The simplest one of the 3, updating the sequencer is achieved by sending different types of messages through the messagePort with appropriate parameters. In the event handler, these messages are forwarded to a WASM function call which updates the sequencer's internal state. For sending a new sample, it looks like this:
+
 ```javascript
 // UI Thread
-worklet.port.postMessage({ 
+worklet.port.postMessage({
   type: 'update_pattern',
   index: channelIndex,
-  pattern: channelPattern 
+  pattern: channelPattern,
 });
 
 // Worklet

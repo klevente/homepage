@@ -79,7 +79,6 @@
     url('/fonts/fira-code-v21-latin-ext_latin-regular.ttf') format('truetype');
 }
 
-
 @font-face {
   font-family: 'Fira Code';
   font-style: normal;
@@ -94,7 +93,15 @@ body {
   font-size: 1.25rem;
 }
 
-h1, h2, h3, h4, h5, h6, header, footer, time {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+footer,
+time {
   font-family: 'Fira Sans', sans-serif;
 }
 
@@ -102,7 +109,8 @@ article h1 {
   font-size: 2em;
 }
 
-footer, time {
+footer,
+time {
   font-size: 1rem;
 }
 
@@ -114,7 +122,8 @@ li {
   overflow-wrap: break-word;
 }
 
-pre, code {
+pre,
+code {
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;

@@ -1,12 +1,12 @@
 ---
-title: Redesigning My Personal Website 
-date: "2022-01-08"
+title: Redesigning My Personal Website
+date: '2022-01-08'
 excerpt: How I built this version using SvelteKit
 ---
 
 <script>
-    import Image from '$lib/components/image.svelte';
-    import ImageList from '$lib/components/image-list.svelte';
+  import Image from '$lib/components/image.svelte';
+  import ImageList from '$lib/components/image-list.svelte';
 </script>
 
 ## Introduction
@@ -57,24 +57,24 @@ import { fetchPostsSorted } from '$lib/util/posts.js';
 
 export async function get() {
   const sortedPosts = await fetchPostsSorted();
-  
+
   return {
     // this returns a `200 OK` response with the supplied `body`
-    body: sortedPosts
+    body: sortedPosts,
   };
 }
 ```
 
 ### Dark Mode Toggle
 
-In order to accommodate both light and dark mode *enthusiasts*, I knew I had to implement some way of toggling between a dark and light mode on the site. Thankfully, I already had a similar feature inside the old version of the site, so it was just a matter of porting it over - or so I thought. For theme changing, I decided to implement it similarly to how Tailwind [does it](https://tailwindcss.com/docs/dark-mode), by way of utilizing [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) and marking the root DOM element with a special class when the user decides to use dark mode. As CSS variables work by resolving to the most specific candidate at all times, this enables the developer to define alternate color schemes for any number of themes, which in my case, was 2. The basic setup of such theming is the following:
+In order to accommodate both light and dark mode _enthusiasts_, I knew I had to implement some way of toggling between a dark and light mode on the site. Thankfully, I already had a similar feature inside the old version of the site, so it was just a matter of porting it over - or so I thought. For theme changing, I decided to implement it similarly to how Tailwind [does it](https://tailwindcss.com/docs/dark-mode), by way of utilizing [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) and marking the root DOM element with a special class when the user decides to use dark mode. As CSS variables work by resolving to the most specific candidate at all times, this enables the developer to define alternate color schemes for any number of themes, which in my case, was 2. The basic setup of such theming is the following:
 
 ```scss
 :root {
   /* light theme colors */
   --paper: #ffffff;
   --ink: #000000;
-  
+
   &.dark {
     /* dark theme colors */
     --paper: #000000;
@@ -108,7 +108,7 @@ function createThemeStore() {
     subscribe,
     // return a helper function as well for toggling themes
     toggle: () => {
-      update(value => value === 'dark' ? 'light' : 'dark');
+      update((value) => (value === 'dark' ? 'light' : 'dark'));
     },
   };
 }
@@ -119,7 +119,7 @@ function getStoredTheme() {
 
 // create a subsription that manages the `.dark` class on the `html` DOM element and
 // saves the current theme into `localStorage` every time the internal `value` changes
-theme.subscribe(value => {
+theme.subscribe((value) => {
   // this check is required because SvelteKit also runs code on its internal server,
   // which does not have access to the browser's API, so it must be checked that
   // the code actually runs in the browser before using `document`, `window`, etc.
@@ -169,7 +169,7 @@ The last piece of the puzzle is actually having a component on screen that calls
 </script>
 
 <div class="theme-selector" on:click={() => theme.toggle()} title="Switch Theme">
-  <img src="/images/dark.png" alt="Dark theme icon">
+  <img src="/images/dark.png" alt="Dark theme icon" />
   <!-- 
     only add the `transparent` class to the light theme icon
     if the current theme is dark, which will show the dark theme icon,
@@ -177,33 +177,33 @@ The last piece of the puzzle is actually having a component on screen that calls
     this updates every time the `theme` store changes as it is prefixed by `$`
   -->
   <img
-    class:transparent="{$theme === 'dark'}"
+    class:transparent={$theme === 'dark'}
     src="/images/light.png"
     alt="Light theme icon"
-  >
+  />
 </div>
 
 <style lang="scss">
-.theme-selector {
-  cursor: pointer;
-  position: relative;
-  width: 30px; /* required as the underlying `img` is `position: absolute;` */
-}
+  .theme-selector {
+    cursor: pointer;
+    position: relative;
+    width: 30px; /* required as the underlying `img` is `position: absolute;` */
+  }
 
-img {
-  margin: 0;
-  position: absolute;
-  left: 0;
-  top: -2px; /* push the image up a bit so it is centered */
-  -webkit-transition: opacity 150ms ease-in-out;
-  -moz-transition: opacity 150ms ease-in-out;
-  -o-transition: opacity 150ms ease-in-out;
-  transition: opacity 150ms ease-in-out;
-}
+  img {
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: -2px; /* push the image up a bit so it is centered */
+    -webkit-transition: opacity 150ms ease-in-out;
+    -moz-transition: opacity 150ms ease-in-out;
+    -o-transition: opacity 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
+  }
 
-.transparent {
-  opacity: 0;
-}
+  .transparent {
+    opacity: 0;
+  }
 </style>
 ```
 
@@ -238,7 +238,7 @@ In order to configure Nginx to use this page as the `404` error display, I follo
 server {
   ...
   error_page 404 /404.html # name of the file inside the site's folder
-  location = /404.html { 
+  location = /404.html {
     root /var/www/name-of-site;
     internal; # do not host the file, just use it as an error page
   }

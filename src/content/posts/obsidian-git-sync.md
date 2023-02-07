@@ -1,11 +1,11 @@
 ---
 title: Setting Up Obsidian Git Sync On All Platforms
-date: "2023-01-31"
+date: '2023-01-31'
 excerpt: The all-in-one solution
 ---
 
 <script>
-    import Image from '$lib/components/image.svelte';
+  import Image from '$lib/components/image.svelte';
 </script>
 
 ## Introduction
@@ -17,6 +17,7 @@ This blog post serves to detail my findings about this matter, mainly so others 
 ## Requirements
 
 For this to work the way I want, I set the following requirements:
+
 - Work across Windows, Linux, MacOS, Android, iOS/iPadOS (yes, I use every platform in this list)
 - Be comfortable to use, preferably minimal amounts of command-line magic each time I want to update my notes on a given device, as otherwise I won't use my notes if it has a large overhead
 - Be free of charge
@@ -33,10 +34,12 @@ One of the easiest methods to share notes across devices. We can install the Goo
 There's just one catch though: namely, that this does not work on iOS, because it [does not allow Obsidian to access files in the sandbox of Google Drive](https://forum.obsidian.md/t/sync-obsidian-note-between-an-ipad-and-an-an-samsung-android-phone-using-google-drive/32396), where the files are actually stored. Sadly, it means that this option is out of the question, as I'd really prefer to have my notes on my iPad as well if possible, but for others, this method can work very well.
 
 #### Pros
+
 - Works on: Windows, Linux, MacOS, Android (have to install Google Drive app)
 - Very easy, once set up it does not require any manual intervention, it "just works"
 
 #### Cons
+
 - Does not work on iOS/iPadOS
 - The free Google Drive tier only allows 15GB of storage, though 100GB is very cheap
 
@@ -45,10 +48,12 @@ There's just one catch though: namely, that this does not work on iOS, because i
 Another cloud-based storage provider from Google's competitor, Apple. This means that syncing across Apple devices works flawlessly, even for Obsidian vaults, but falls short everywhere else, as iCloud sync is not available for Windows, Linux or Android.
 
 #### Pros
+
 - Works on: MacOS, iOS/iPadOS
 - Easy to set up and use on supported platforms
 
 #### Cons
+
 - Does not work on Windows, Linux, Android
 - Only 5GB of free storage
 
@@ -57,10 +62,12 @@ Another cloud-based storage provider from Google's competitor, Apple. This means
 Finally, we arrive at the solution I went with in the end, though it took a quite a bit of setup to achieve the ease of use I strove for in the beginning. Basically, I chose to store my vault in a private GitHub repository, from where all my devices can access it. In the next part of this post, I'll share the exact steps I took for all platforms, but first, let's see the pros and cons.
 
 #### Pros
+
 - Works on all platforms, though some initial setup is required
 - Maximum repository size is 100GB, though there are some warnings at 5GB and 75GB (refer to this [StackOverflow thread](https://stackoverflow.com/questions/38768454/repository-size-limits-for-github-com) for more info)
 
 #### Cons
+
 - Have to configure some extra things, especially on mobile
 - Storing large amounts of data in a Git repository is not ideal
 
@@ -71,6 +78,7 @@ Alright, so let's cut to the chase and see how to set up GitHub synchronization 
 ### PC/Mac
 
 Sync setup is easiest for PCs and Macs, so I'll get these out of the way first:
+
 1. Make sure to have `git` installed on your system (on Linux and Mac it's pre-installed, on Windows use the [installer](https://git-scm.com/downloads))
 2. If you already have a vault on GitHub, clone it to your system (If you don't have a vault yet, create a new repository on GitHub, and clone it to your computer)
 3. Open the newly cloned folder as a vault
@@ -96,6 +104,7 @@ To address this issue, I opted to set up a terminal environment on my mobile dev
 #### Authentication
 
 Before diving into the platform-specific details, we need to see what authentication methods we have available for mobile:
+
 - Obsidian Git only supports password/token authentication, so it's advisable to create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with read/write permissions to your vault repository only (make sure to save this token somewhere safe, as once created, you'll not be able to see it again!)
 - For the mobile terminals, it's easiest to use SSH authentication, although for now I opted to use my personal access token here as well - downside is that I have to type/paste it every time I want to pull/push changes (though as I only do it rarely through the terminal, it's not a huge issue for me)
 
@@ -108,6 +117,7 @@ For iOS, I referred to this [thread](https://forum.obsidian.md/t/mobile-automati
 The initial setup differs a bit depending on how you want to clone the repo, but after that it's the same for both. If you have a small repository in GitHub, I advise to clone it using the Obsidian Git plugin first, and then set up the a-Shell integration second. If you already have a large repository, then you should clone it using a-Shell, then open it in Obsidian and set up Obsidian Git after.
 
 First, let's see the steps when you have a small repository, which Obsidian Git can handle:
+
 1. Download [Obsidian](https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442) and [a-Shell](https://apps.apple.com/us/app/a-shell/id1473805438) from the App Store
 2. Open Obsidian, create a new vault, and don't select "Store in iCloud"
 3. Go to Settings, enable Community Plugins, install Obsidian Git, then enable it
@@ -131,15 +141,16 @@ First, let's see the steps when you have a small repository, which Obsidian Git 
 17. To check whether everything is in order, run `lg2 pull`, and put in your username+token when asked
 18. If it complains about a setting being wrong, run the command it suggests at the end of the error message, then try again
 19. You can also set up SSH authentication:
-     1. `cd` back into the home directory by running `cd`
-     2. Run `ssh-keygen -t ed25519 -C "<your-email>"`
-     3. `cd .ssh`, then run `cat id_ed25519.pub`
-     4. Copy the output, then go to [SSH and GPG Keys](https://github.com/settings/keys) on GitHub
-     5. Click new SSH key
-     6. Add a name and the public key
-     7. Now if you run `lg2 pull`, it should work without asking for credentials
+    1. `cd` back into the home directory by running `cd`
+    2. Run `ssh-keygen -t ed25519 -C "<your-email>"`
+    3. `cd .ssh`, then run `cat id_ed25519.pub`
+    4. Copy the output, then go to [SSH and GPG Keys](https://github.com/settings/keys) on GitHub
+    5. Click new SSH key
+    6. Add a name and the public key
+    7. Now if you run `lg2 pull`, it should work without asking for credentials
 
 If your vault is already large and Obsidian Git has problems cloning it, then you have to do these steps in reverse order, meaning that you'll clone the repo using `lg2`, and then set up Obsidian Git after:
+
 1. Download [Obsidian](https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442) and [a-Shell](https://apps.apple.com/us/app/a-shell/id1473805438) from the App Store
 2. Open Obsidian, create a new dummy vault, and don't select "Store in iCloud" (this makes the Obsidian folder appear later when using a-Shell)
 3. Open a-Shell, run the `pickFolder` command, which will open a file explorer-like UI
@@ -164,6 +175,7 @@ If your vault is already large and Obsidian Git has problems cloning it, then yo
 Setup for Android is quite similar, and just differs in the terminal app being used. I opted for [Termux](https://termux.dev/en/), as it's a widely used terminal for Android that works without root and offers packages through APT. Here we can also set our vault up in 2 different ways, depending on which app we choose to clone the repository first.
 
 For small repositories, you can start with Obsidian Git and set up Termux after:
+
 1. Download [Obsidian](https://play.google.com/store/apps/details?id=md.obsidian&hl=en&gl=US) from the Play Store and [Termux](https://f-droid.org/en/packages/com.termux/) From F-Droid
 2. Open Obsidian, create a new vault, put it in the `Documents` folder (you can put it anywhere, it's just an easy place to find later)
 3. Go to Settings, enable Community Plugins, install Obsidian Git, then enable it
@@ -193,6 +205,7 @@ For small repositories, you can start with Obsidian Git and set up Termux after:
     7. Now if you run `git pull`, it should work without asking for credentials
 
 Finally, let's see the scenario where your repository is already large, so we can only get it using Termux:
+
 1. Download [Obsidian](https://play.google.com/store/apps/details?id=md.obsidian&hl=en&gl=US) from the Play Store and [Termux](https://f-droid.org/en/packages/com.termux/) From F-Droid
 2. Open Termux, run `termux-setup-storage` to get storage permissions
 3. Run `pkg update && pkg install git`

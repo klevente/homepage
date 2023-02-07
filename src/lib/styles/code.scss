@@ -35,7 +35,7 @@
 /* code blocks */
 pre[class*='language-'] {
   position: relative;
-  padding: 1.25rem 0.5ch .25rem;
+  padding: 1.25rem 0.5ch 0.25rem;
   // padding: 0 .75rem;
   // border-radius: 0 var(--radius) var(--radius);
 
@@ -44,7 +44,6 @@ pre[class*='language-'] {
   overflow-x: auto;
   // background-color: #fcfdfd;
   border: 1px solid var(--accent);
-
 
   &:before {
     content: 'Code';
@@ -80,7 +79,7 @@ pre.language-javascript:before {
 }
 
 pre.language-json:before {
-  content: 'json'
+  content: 'json';
 }
 
 pre.language-markdown:before {
@@ -104,7 +103,7 @@ pre.language-rust:before {
 }
 
 pre.language-toml:before {
-  content: 'toml'
+  content: 'toml';
 }
 
 pre.language-ts:before,
@@ -114,7 +113,7 @@ pre.language-typescript:before {
 
 pre.language-yaml:before,
 pre.language-yml:before {
-  content: 'yaml'
+  content: 'yaml';
 }
 
 // colors
