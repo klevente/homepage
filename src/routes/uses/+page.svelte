@@ -142,6 +142,11 @@
   <h2>Utility</h2>
   <ul>
     <li><a href="https://obsidian.md/">Obsidian</a>: For Markdown-based note-taking.</li>
+    <li>
+      <a href="https://github.com/Schniz/fnm">fnm</a>: Enables automatic switching between Node
+      versions when <code>cd</code>ing into a directory with a <code>.nvmrc</code> file. Much faster
+      than <a href="https://github.com/nvm-sh/nvm">nvm</a>, as it's written in Rust, not shell.
+    </li>
   </ul>
 </article>
 
