@@ -42,13 +42,9 @@
 </article>
 
 <style lang="scss">
-  time {
+  img {
+    image-rendering: pixelated;
     position: relative;
-
-    img {
-      image-rendering: pixelated;
-      position: relative;
-      top: 2px;
-    }
+    top: 2px;
   }
 </style>

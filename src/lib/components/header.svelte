@@ -52,9 +52,5 @@
     &:hover {
       text-decoration: underline;
     }
-
-    &.home-link {
-      position: relative;
-    }
   }
 </style>
