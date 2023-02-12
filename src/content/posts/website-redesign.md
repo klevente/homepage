@@ -118,7 +118,8 @@ function getStoredTheme() {
 }
 
 // create a subsription that manages the `.dark` class on the `html` DOM element and
-// saves the current theme into `localStorage` every time the internal `value` changes
+// saves the current theme into `localStorage`
+// every time the internal `value` changes
 theme.subscribe((value) => {
   // this check is required because SvelteKit also runs code on its internal server,
   // which does not have access to the browser's API, so it must be checked that

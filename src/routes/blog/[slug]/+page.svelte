@@ -26,4 +26,13 @@
 </article>
 
 <style lang="scss">
+  time {
+    position: relative;
+
+    img {
+      image-rendering: pixelated;
+      position: relative;
+      top: 2px;
+    }
+  }
 </style>

@@ -36,13 +36,7 @@
 pre[class*='language-'] {
   position: relative;
   padding: 1.25rem 0.5ch 0.25rem;
-  // padding: 0 .75rem;
-  // border-radius: 0 var(--radius) var(--radius);
-
-  // background: var(--accent);
-  // color: var(--code-ink);
   overflow-x: auto;
-  // background-color: #fcfdfd;
   border: 1px solid var(--accent);
 
   &:before {

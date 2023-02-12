@@ -26,7 +26,7 @@
               <span class="excerpt">{post.metadata.excerpt}</span>
             {/if}
           </span>
-          <span class="date">{post.metadata.date}</span>
+          <time>{post.metadata.date}</time>
         </div>
       </li>
     {/each}
@@ -63,9 +63,7 @@
     }
   }
 
-  .date {
-    font-family: 'Fira Code', monospace;
-    font-size: 14px;
+  time {
     flex-shrink: 0;
   }
 </style>
