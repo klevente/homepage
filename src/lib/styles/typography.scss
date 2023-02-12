@@ -88,8 +88,14 @@
     url('/fonts/fira-code-v21-latin-ext_latin-600.ttf') format('truetype');
 }
 
+:root {
+  --font-sans: 'Fira Sans', sans-serif;
+  --font-serif: 'Tinos', serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
 body {
-  font-family: 'Tinos', serif;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
 }
 
@@ -102,7 +108,7 @@ h6,
 header,
 footer,
 time {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: var(--font-sans);
 }
 
 article h1 {
@@ -130,7 +136,7 @@ code {
   tab-size: 2;
 
   text-shadow: none;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
   font-style: normal;
   font-size: 0.875rem;
 
