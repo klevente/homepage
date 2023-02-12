@@ -1,37 +1,37 @@
 @font-face {
-  font-family: 'Tinos';
+  font-family: 'Merriweather';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/tinos-v24-latin-ext_latin-regular.woff2') format('woff2'),
-    url('/fonts/tinos-v24-latin-ext_latin-regular.woff') format('woff'),
-    url('/fonts/tinos-v24-latin-ext_latin-regular.ttf') format('truetype');
+  src: url('/fonts/merriweather-v30-latin-ext_latin-regular.woff2') format('woff2'),
+  url('/fonts/merriweather-v30-latin-ext_latin-regular.woff') format('woff'),
+  url('/fonts/merriweather-v30-latin-ext_latin-regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Tinos';
+  font-family: 'Merriweather';
   font-style: italic;
   font-weight: 400;
-  src: url('/fonts/tinos-v24-latin-ext_latin-italic.woff2') format('woff2'),
-    url('/fonts/tinos-v24-latin-ext_latin-italic.woff') format('woff'),
-    url('/fonts/tinos-v24-latin-ext_latin-italic.ttf') format('truetype');
+  src: url('/fonts/merriweather-v30-latin-ext_latin-italic.woff2') format('woff2'),
+  url('/fonts/merriweather-v30-latin-ext_latin-italic.woff') format('woff'),
+  url('/fonts/merriweather-v30-latin-ext_latin-italic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Tinos';
+  font-family: 'Merriweather';
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/tinos-v24-latin-ext_latin-700.woff2') format('woff2'),
-    url('/fonts/tinos-v24-latin-ext_latin-700.woff') format('woff'),
-    url('/fonts/tinos-v24-latin-ext_latin-700.ttf') format('truetype');
+  src: url('/fonts/merriweather-v30-latin-ext_latin-700.woff2') format('woff2'),
+  url('/fonts/merriweather-v30-latin-ext_latin-700.woff') format('woff'),
+  url('/fonts/merriweather-v30-latin-ext_latin-700.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Tinos';
+  font-family: 'Merriweather';
   font-style: italic;
   font-weight: 700;
-  src: url('/fonts/tinos-v24-latin-ext_latin-700italic.woff2') format('woff2'),
-    url('/fonts/tinos-v24-latin-ext_latin-700italic.woff') format('woff'),
-    url('/fonts/tinos-v24-latin-ext_latin-700italic.ttf') format('truetype');
+  src: url('/fonts/merriweather-v30-latin-ext_latin-700italic.woff2') format('woff2'),
+  url('/fonts/merriweather-v30-latin-ext_latin-700italic.woff') format('woff'),
+  url('/fonts/merriweather-v30-latin-ext_latin-700italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -39,8 +39,8 @@
   font-style: normal;
   font-weight: 400;
   src: url('/fonts/fira-sans-v16-latin-ext_latin-regular.woff2') format('woff2'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-regular.woff') format('woff'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-regular.ttf') format('truetype');
+  url('/fonts/fira-sans-v16-latin-ext_latin-regular.woff') format('woff'),
+  url('/fonts/fira-sans-v16-latin-ext_latin-regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -48,8 +48,8 @@
   font-style: italic;
   font-weight: 400;
   src: url('/fonts/fira-sans-v16-latin-ext_latin-italic.woff2') format('woff2'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-italic.woff') format('woff'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-italic.ttf') format('truetype');
+  url('/fonts/fira-sans-v16-latin-ext_latin-italic.woff') format('woff'),
+  url('/fonts/fira-sans-v16-latin-ext_latin-italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -57,8 +57,8 @@
   font-style: normal;
   font-weight: 700;
   src: url('/fonts/fira-sans-v16-latin-ext_latin-700.woff2') format('woff2'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-700.woff') format('woff'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-700.ttf') format('truetype');
+  url('/fonts/fira-sans-v16-latin-ext_latin-700.woff') format('woff'),
+  url('/fonts/fira-sans-v16-latin-ext_latin-700.ttf') format('truetype');
 }
 
 @font-face {
@@ -66,8 +66,8 @@
   font-style: italic;
   font-weight: 700;
   src: url('/fonts/fira-sans-v16-latin-ext_latin-700italic.woff2') format('woff2'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-700italic.woff') format('woff'),
-    url('/fonts/fira-sans-v16-latin-ext_latin-700italic.ttf') format('truetype');
+  url('/fonts/fira-sans-v16-latin-ext_latin-700italic.woff') format('woff'),
+  url('/fonts/fira-sans-v16-latin-ext_latin-700italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -75,8 +75,8 @@
   font-style: normal;
   font-weight: 400;
   src: url('/fonts/fira-code-v21-latin-ext_latin-regular.woff2') format('woff2'),
-    url('/fonts/fira-code-v21-latin-ext_latin-regular.woff') format('woff'),
-    url('/fonts/fira-code-v21-latin-ext_latin-regular.ttf') format('truetype');
+  url('/fonts/fira-code-v21-latin-ext_latin-regular.woff') format('woff'),
+  url('/fonts/fira-code-v21-latin-ext_latin-regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -84,19 +84,21 @@
   font-style: normal;
   font-weight: 600;
   src: url('/fonts/fira-code-v21-latin-ext_latin-600.woff2') format('woff2'),
-    url('/fonts/fira-code-v21-latin-ext_latin-600.woff') format('woff'),
-    url('/fonts/fira-code-v21-latin-ext_latin-600.ttf') format('truetype');
+  url('/fonts/fira-code-v21-latin-ext_latin-600.woff') format('woff'),
+  url('/fonts/fira-code-v21-latin-ext_latin-600.ttf') format('truetype');
 }
 
 :root {
+  --font-serif: 'Merriweather', serif;
   --font-sans: 'Fira Sans', sans-serif;
-  --font-serif: 'Tinos', serif;
   --font-mono: 'Fira Code', monospace;
+  --font-size-body: 1rem;
+  --font-size-mono: 0.938rem;
 }
 
 body {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: var(--font-size-body);
 }
 
 h1,
@@ -115,9 +117,9 @@ article h1 {
   font-size: 2em;
 }
 
-footer,
 time {
-  font-size: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
 }
 
 a {
@@ -138,19 +140,21 @@ code {
   text-shadow: none;
   font-family: var(--font-mono);
   font-style: normal;
-  font-size: 0.875rem;
+  font-size: var(--font-size-mono);
 
   direction: ltr;
   text-align: left;
   word-spacing: normal;
-  /*word-break: break-word;*/ /* might need this at some point */
+  // might need this at some point
+  // word-break: break-word;
 }
 
-/* inline code */
+// inline code
 :not(pre) > code {
   &:before {
     content: '`';
   }
+
   &:after {
     content: '`';
   }
