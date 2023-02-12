@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { PageData } from './$types';
   import { formatTitle } from '$lib/utils/format-title.js';
 
@@ -7,6 +8,21 @@
 
   export let data: PageData;
   const { title, date, content } = data;
+
+  onMount(() => {
+    document.querySelectorAll('pre code').forEach((elem) => {
+      elem.addEventListener('click', (event: PointerEvent) => {
+        if (event.detail !== 3) {
+          return;
+        }
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        const range = document.createRange();
+        range.selectNodeContents(elem);
+        selection.addRange(range);
+      });
+    });
+  });
 </script>
 
 <svelte:head>
