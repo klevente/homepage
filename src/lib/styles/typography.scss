@@ -149,7 +149,7 @@ code {
   // word-break: break-word;
 }
 
-// inline code
+/* inline code */
 :not(pre) > code {
   &:before {
     content: '`';

@@ -24,7 +24,6 @@
     gap: 12px;
 
     background-color: var(--accent);
-    // background-color: #d0e3d3;
     padding: 4px 8px;
     align-items: start;
     height: 20px;

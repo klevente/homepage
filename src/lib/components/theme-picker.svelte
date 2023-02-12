@@ -19,7 +19,7 @@
   .theme-selector {
     cursor: pointer;
     position: relative;
-    width: 16px; /* required as the underlying `img` is `position: absolute;` */
+    width: 16px; // required as the underlying `img` is `position: absolute;`
     background: none;
     color: inherit;
     border: none;
@@ -32,7 +32,7 @@
     margin: 0;
     position: absolute;
     left: 0;
-    top: 2px; /* push the image down a bit so it is centered */
+    top: 2px; // push the image down a bit so it is centered
     @media screen and (prefers-reduced-motion: no-preference) {
       -webkit-transition: opacity 150ms ease-in-out;
       -moz-transition: opacity 150ms ease-in-out;
