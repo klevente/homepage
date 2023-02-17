@@ -1,13 +1,15 @@
 ---
 title: Redesigning My Personal Website
 date: '2022-01-08'
-excerpt: How I built this version using SvelteKit
+excerpt: How I built the previous version using SvelteKit
 ---
 
 <script>
   import Image from '$lib/components/image.svelte';
   import ImageList from '$lib/components/image-list.svelte';
 </script>
+
+_Update: This is the write-up I did for the previous version of my website. If you want to see how the current version is built, check out [this post](https://klevente.dev/blog/website-redesign-2.0)._
 
 ## Introduction
 
