@@ -1,11 +1,13 @@
 <script lang="ts">
-  import Image from './image.svelte';
-
   export let images: [string, string, string][];
+  export let caption: string | null = null;
 </script>
 
-<div class="img-list">
+<figure class="img-list">
   {#each images as [src, alt, width]}
-    <Image {src} {alt} {width} />
+    <img {src} {alt} {width} />
   {/each}
-</div>
+  {#if caption}
+    <figcaption>{caption}</figcaption>
+  {/if}
+</figure>

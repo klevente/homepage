@@ -1,17 +1,22 @@
 figure {
   margin: 1.25rem 0;
   text-align: center;
+
+  &.img-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    figcaption {
+      flex-basis: 100%;
+      margin-top: 4px;
+    }
+  }
 }
 
 img {
   height: auto;
   max-width: 100%;
-}
-
-.img-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
 
 figcaption {
