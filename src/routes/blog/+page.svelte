@@ -1,9 +1,9 @@
 <script lang="ts">
   import { formatTitle } from '$lib/utils/format-title';
   import PageHeading from '$lib/components/page-heading.svelte';
-  import type { PageData } from './$types';
+  import type { PageServerData } from './$types';
 
-  export let data: PageData;
+  export let data: PageServerData;
   const { posts } = data;
 </script>
 
