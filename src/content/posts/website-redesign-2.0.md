@@ -120,7 +120,7 @@ As far as the themes itself go, I still opted for a light and dark one, mainly u
 As described in my last redesign post, I wanted a custom 404 page that Nginx would render in case the user navigated to a page that does not exist. For this, I followed [this Reddit comment](https://www.reddit.com/r/sveltejs/comments/o1tr4w/comment/h726jte/) as guide to create the page using Svelte, so I could use all my layouts and components for it.
 
 However, after updating to SvelteKit 1.0, this method no longer worked out-of-the-box, so I had to investigate a bit. Basically, I uncovered 2 entangled problems, one of which was there since my first SvelteKit version was deployed to Nginx:
-1. When navigating to any sub-routes first, ex. [https://klevente.dev/blog]([https://klevente.dev/blog]) would return `403 Forbidden`. This would also surface if the user disabled JavaScript, thus falling back to server-side navigation and clicking a link on the home page
+1. When navigating to any sub-routes first, ex. `https://klevente.dev/blog` would return `403 Forbidden`. This would also surface if the user disabled JavaScript, thus falling back to server-side navigation and clicking a link on the home page
 2. The 404 page's HTML would load, but for nested nonexistent routes (like `a/b`), the styles would be missing
 
 Before showing you the solution to these problems, let's take a look at what the Nginx config was for my page that caused these issues:
