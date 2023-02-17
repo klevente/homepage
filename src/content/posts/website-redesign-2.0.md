@@ -1,7 +1,7 @@
 ---
 title: Website Redesign 2.0
 date: '2023-02-18'
-excerpt: How the current version is built
+excerpt: Second time is the charm
 ---
 
 <script>
