@@ -9,7 +9,7 @@ excerpt: How I built the previous version using SvelteKit
   import ImageList from '$lib/components/image-list.svelte';
 </script>
 
-_Update: This is the write-up I did for the previous version of my website. If you want to see how the current version is built, check out [this post](https://klevente.dev/blog/website-redesign-2.0)._
+_Update: This is the write-up I did for the previous version of my website. If you want to see how the current version is built, check out [this post](/blog/website-redesign-2.0)._
 
 ## Introduction
 

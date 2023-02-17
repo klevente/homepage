@@ -11,7 +11,7 @@ excerpt: Second time is the charm
 
 ## Introduction
 
-Another year, another website update, and like clockwork, I seem to come back to my website at the start of every year, with great ambitions. However, this time it was a bit different, as I actually had a task to accomplish: SvelteKit 1.0 was [finally released](https://svelte.dev/blog/announcing-sveltekit-1.0), so I had to update the site to actually make use of it, which also gave me a nice excuse to see all the changes that were made since I last used it to build the [previous version](https://klevente.dev/blog/website-redesign). And boy there were a [lot of changes](https://github.com/sveltejs/kit/discussions/5748).
+Another year, another website update, and like clockwork, I seem to come back to my website at the start of every year, with great ambitions. However, this time it was a bit different, as I actually had a task to accomplish: SvelteKit 1.0 was [finally released](https://svelte.dev/blog/announcing-sveltekit-1.0), so I had to update the site to actually make use of it, which also gave me a nice excuse to see all the changes that were made since I last used it to build the [previous version](/blog/website-redesign). And boy there were a [lot of changes](https://github.com/sveltejs/kit/discussions/5748).
 
 As last time I used Josh Collinsworth's [blog post](https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog) as a start, I decided to check out whether he made any updates to it to accommodate to the new SvelteKit changes, and he actually did! After skimming through it, I decided it'll be a good starting point for re-architecting and got to work. While I was at it, I also wanted to try out a different visual design for the site, but more on that later.
 
@@ -21,9 +21,10 @@ The main point of this redesign was to update the project to use SvelteKit 1.0, 
 
 The place where this impacted the project most was the handling of individual blog posts, where we could previously have the post Markdown files inside the directory where we wanted our posts to live under, and let MDsveX handle the conversion to HTML, resulting in them being available under their own route. However, in SvelteKit 1.0, routes cannot be defined using a file only (like `about.svelte`), instead, a folder must be created for them (`about/+page.svelte`).
 
-To solve this issue, I followed Josh's solution to create a catch-all route named `[slug]` inside the `blog` subdirectory, which is then used to render all available blog posts using a `load` function (living in `+page.ts`) that pulls in the Svelte component MDsveX generated using `await import`. Then, inside `+page.svelte`, this component is mounted using the dynamic component syntax. Take a look at it below.
+To solve this issue, I followed Josh's solution to create a catch-all route named `[slug]` inside the `blog` subdirectory, which is then used to render all available blog posts using a `load` function (living in `+page.ts`) that pulls in the Svelte component MDsveX generated using `await import`. Then, inside `+page.svelte`, this component is mounted using the dynamic component syntax. The only caveat with this approach, is that as far as SvelteKit's client-side navigator is concerned, all blog posts live on the same path, which means we need some additional logic to handle the case where we want to navigate between blog posts directly, as Svelte won't know by default that it needs to change the content that is displayed. Fortunately, this issue is not present when JavaScript is turned off, as then all navigation is handled by the browser instead. Take a look at the solution for this below.
 
 ```ts
+/* blog/[slug]/+page.ts */
 export const load = (async ({ params }) => {
   const post = (await import(`../../../content/posts/${params.slug}.md`)) as {
     metadata: Metadata;
@@ -44,15 +45,23 @@ export const load = (async ({ params }) => {
 ```
 
 ```svelte
+<!-- blog/[slug]/+page.svelte -->
 <script lang="ts">
   import type { PageData } from './$types';
 
   export let data: PageData;
-  const { title, date, content } = data;
+  let title: string;
+  let date: string;
+  let content: SvelteComponentTyped<Empty, Empty, Empty>;
+  // make `title`, `date` and `content` reactive, meaning that
+  // every time `data` changes, they should be automatically updated,
+  // resulting in a re-render of the post with the new metadata and content
+  $: ({ title, date, content } = data);
 </script>
 
 <article>
-  <!-- title, date, other metadata -->
+  <h1>{title}</h1>
+  <time>{date}</time>
   <svelte:component this={content} />
 </article>
 ```
@@ -113,7 +122,7 @@ One of my favourite design elements of Windows 98 are all the icons it has, of w
 
 ### Theming
 
-As far as the themes itself go, I still opted for a light and dark one, mainly using the same techniques for selecting colors and implementing the switching and theme saving as in the last version of my website - if you want to check out how I did it, take a look at my [previous blog post](http://localhost:5173/blog/website-redesign) in this topic, as the solution is virtually unchanged.
+As far as the themes itself go, I still opted for a light and dark one, mainly using the same techniques for selecting colors and implementing the switching and theme saving as in the last version of my website - if you want to check out how I did it, take a look at my [previous blog post](/blog/website-redesign) in this topic, as the solution is virtually unchanged.
 
 ## 404 Page Shenanigans
 

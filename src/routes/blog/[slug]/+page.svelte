@@ -1,13 +1,17 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, SvelteComponentTyped } from 'svelte';
   import type { PageData } from './$types';
-  import { formatTitle } from '$lib/utils/format-title.js';
+  import { formatTitle } from '$lib/utils/format-title';
+  import type { Empty } from '$lib/types';
 
   import '$lib/styles/blog.scss';
   import '$lib/styles/code.scss';
 
   export let data: PageData;
-  const { title, date, content } = data;
+  let title: string;
+  let date: string;
+  let content: SvelteComponentTyped<Empty, Empty, Empty>;
+  $: ({ title, date, content } = data);
 
   onMount(() => {
     document.querySelectorAll('pre code').forEach((elem) => {
