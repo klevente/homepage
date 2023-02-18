@@ -66,7 +66,7 @@ export const load = (async ({ params }) => {
 </article>
 ```
 
-This strategy also made me move all blog posts a bit higher in the project tree into a dedicated `content` folder, which is very convenient and overall a nice separation of concerns.
+This strategy also made me move all blog posts to the root of the project tree into a dedicated `content` folder, which is very convenient and overall a nice separation of concerns.
 
 ### TypeScript
 

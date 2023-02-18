@@ -10,7 +10,7 @@ export type PostData = {
 };
 
 export async function fetchPosts(): Promise<PostData[]> {
-  const posts = import.meta.glob('/src/content/posts/*.md');
+  const posts = import.meta.glob('/content/posts/*.md');
   const iterablePostFiles = Object.entries(posts);
 
   return Promise.all(
