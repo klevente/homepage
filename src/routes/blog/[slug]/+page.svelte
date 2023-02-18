@@ -14,12 +14,12 @@
   $: ({ title, date, content } = data);
 
   onMount(() => {
-    document.querySelectorAll('pre code').forEach((elem) => {
-      elem.addEventListener('click', (event: PointerEvent) => {
+    document.querySelectorAll<HTMLElement>('pre code').forEach((elem) => {
+      elem.addEventListener('click', (event: MouseEvent) => {
         if (event.detail !== 3) {
           return;
         }
-        const selection = window.getSelection();
+        const selection = window.getSelection()!;
         selection.removeAllRanges();
         const range = document.createRange();
         range.selectNodeContents(elem);

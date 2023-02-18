@@ -223,13 +223,13 @@ That said, I just opted to add a simple click event listener to all code blocks,
   import { onMount } from 'svelte';
   
   onMount(() => {
-    document.querySelectorAll('pre code').forEach((elem) => {
-      elem.addEventListener('click', (event: PointerEvent) => {
+    document.querySelectorAll<HTMLElement>('pre code').forEach((elem) => {
+      elem.addEventListener('click', (event: MouseEvent) => {
         if (event.detail !== 3) {
           // only care about triple-clicks
           return;
         }
-        const selection = window.getSelection();
+        const selection = window.getSelection()!;
         // remove any selection that was there before
         selection.removeAllRanges();
         const range = document.createRange();
