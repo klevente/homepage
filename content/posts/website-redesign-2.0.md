@@ -186,12 +186,14 @@ The issue stems from the fact that the generated page references all assets (CSS
 After a considerable amount of searching, I haven't found a way to configure `adapter-static` to only use absolute paths for static assets, which would work all the time, so I decided on a hacky solution and wrote a small Node script to change all relative paths to absolute ones inside the generated `404.html` file - basically the `.` character needs to be removed from the start of all links pointing to static assets. This script gets run automatically after running `vite build` when using `npm run build`.
 
 ```js
+/* scripts/convert-404-page-to-use-absolute-paths.js */
 import fs from 'fs/promises';
 
 const path = 'build/404.html';
 const pattern = /\.\/_app/g;
 const replacement = '/_app';
 
+// top-level await works because `type: module` is set in `package.json`
 const page = await fs.readFile(path, 'utf-8');
 const replaced = page.replaceAll(pattern, replacement);
 await fs.writeFile(path, replaced);
