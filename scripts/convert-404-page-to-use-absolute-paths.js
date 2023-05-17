@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-const path = 'public/404.html';
+const path = 'build/404.html';
 const pattern = /\.\/_app/g;
 const replacement = '/_app';
 
