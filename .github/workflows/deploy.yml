@@ -5,6 +5,8 @@ on:
 
 jobs:
   deploy:
+    # Disabling for now as I use Vercel for deployment
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
