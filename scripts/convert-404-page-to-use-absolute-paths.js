@@ -1,6 +1,8 @@
 import fs from 'fs/promises';
 
-const path = 'build/404.html';
+const VERCEL_OUTPUT_DIR = '.vercel/output/static';
+
+const path = `${VERCEL_OUTPUT_DIR}/404.html`;
 const pattern = /\.\/_app/g;
 const replacement = '/_app';
 
