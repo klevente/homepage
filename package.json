@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite dev --host",
     "build": "vite build && node scripts/convert-404-page-to-use-absolute-paths.js",
+    "build:vercel": "vite build && node scripts/convert-404-page-to-use-absolute-paths.js --vercel",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
