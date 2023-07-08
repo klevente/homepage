@@ -34,6 +34,7 @@ function getStoredTheme(): Theme | null {
   return browser ? localStorage.theme : null;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function prefersDarkMode() {
   if (browser) {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
