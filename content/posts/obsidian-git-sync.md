@@ -1,11 +1,11 @@
 ---
 title: Setting Up Obsidian Git Sync On All Platforms
-date: '2023-01-31'
+date: "2023-01-31"
 excerpt: The all-in-one solution
 ---
 
 <script>
-  import Image from '$lib/components/image.svelte';
+  import Image from "$lib/components/image.svelte";
 </script>
 
 ## Introduction

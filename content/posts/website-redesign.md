@@ -1,12 +1,12 @@
 ---
 title: Redesigning My Personal Website
-date: '2022-01-08'
+date: "2022-01-08"
 excerpt: How I built the previous version using SvelteKit
 ---
 
 <script>
-  import Image from '$lib/components/image.svelte';
-  import ImageList from '$lib/components/image-list.svelte';
+  import Image from "$lib/components/image.svelte";
+  import ImageList from "$lib/components/image-list.svelte";
 </script>
 
 _Update: This is the write-up I did for the previous version of my website. If you want to see how the current version is built, check out [this post](/blog/website-redesign-2.0)._
@@ -37,12 +37,11 @@ The first thing I did after getting an initial working prototype in place is to 
 /* lib/util/posts.js */
 export async function fetchPosts() {
   return Promise.all(
-    Object.entries(import.meta.glob('../../routes/blog/*.md'))
-      .map(async ([path, resolver]) => {
-        const { metadata } = await resolver();
-        // cut off path until start of the filename, also removing the file extension
-        const slug = path.slice(12, -3);
-        return { ...metadata, slug };
+    Object.entries(import.meta.glob("../../routes/blog/*.md")).map(async ([path, resolver]) => {
+      const { metadata } = await resolver();
+      // cut off path until start of the filename, also removing the file extension
+      const slug = path.slice(12, -3);
+      return { ...metadata, slug };
     }),
   );
 }
@@ -55,7 +54,7 @@ export async function fetchPostsSorted() {
 
 ```js
 /* routes/api/posts.json.js */
-import { fetchPostsSorted } from '$lib/util/posts.js';
+import { fetchPostsSorted } from "$lib/util/posts.js";
 
 export async function get() {
   const sortedPosts = await fetchPostsSorted();
@@ -91,8 +90,8 @@ In order to make theme changes permanent, the currently selected theme is saved 
 
 ```js
 /* lib/utils/theme.js */
-import { writable } from 'svelte/store';
-import { browser } from '$app/env';
+import { writable } from "svelte/store";
+import { browser } from "$app/env";
 
 // create and export the store, so it is accessible from anywhere
 export const theme = createThemeStore();
@@ -101,7 +100,7 @@ function createThemeStore() {
   // get the saved theme from `localStorage`
   const stored = getStoredTheme();
   // create the store, use a light theme if no stored value was available
-  const { subscribe, update } = writable(stored || 'light');
+  const { subscribe, update } = writable(stored || "light");
 
   // this line creates a custom store that can integrate with Svelte,
   // as it only requires that a valid `subscribe` method is present on an object
@@ -110,7 +109,7 @@ function createThemeStore() {
     subscribe,
     // return a helper function as well for toggling themes
     toggle: () => {
-      update((value) => (value === 'dark' ? 'light' : 'dark'));
+      update((value) => (value === "dark" ? "light" : "dark"));
     },
   };
 }
@@ -128,10 +127,10 @@ theme.subscribe((value) => {
   // the code actually runs in the browser before using `document`, `window`, etc.
   if (browser) {
     const rootClasses = document.documentElement.classList;
-    if (value === 'dark') {
-      rootClasses.add('dark');
+    if (value === "dark") {
+      rootClasses.add("dark");
     } else {
-      rootClasses.remove('dark');
+      rootClasses.remove("dark");
     }
     localStorage.theme = value;
   }
@@ -150,13 +149,13 @@ In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avo
   <script>
     // while this worked in a previous version of SvelteKit,
     // it is not happy with importing `$app/env` as of the most recent version
-    /* import { browser } from '$app/env'; */
+    /* import { browser } from "$app/env"; */
 
     // check location by querying whether the `document` global is available,
     // as importing the `browser` variable no longer works
-    if (/* browser */ typeof document !== 'undefined') {
-      if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add('dark');
+    if (/* browser */ typeof document !== "undefined") {
+      if (localStorage.theme === "dark") {
+        document.documentElement.classList.add("dark");
       }
     }
   </script>
@@ -168,7 +167,7 @@ The last piece of the puzzle is actually having a component on screen that calls
 ```svelte
 <!-- lib/components/theme-picker.svelte -->
 <script>
-  import { theme } from '$lib/util/theme';
+  import { theme } from "$lib/util/theme";
 </script>
 
 <div class="theme-selector" on:click={() => theme.toggle()} title="Switch Theme">
@@ -179,11 +178,7 @@ The last piece of the puzzle is actually having a component on screen that calls
     else the light theme icon  will cover up the dark one as it will be visible.
     this updates every time the `theme` store changes as it is prefixed by `$`
   -->
-  <img
-    class:transparent={$theme === 'dark'}
-    src="/images/light.png"
-    alt="Light theme icon"
-  />
+  <img class:transparent={$theme === "dark"} src="/images/light.png" alt="Light theme icon" />
 </div>
 
 <style lang="scss">

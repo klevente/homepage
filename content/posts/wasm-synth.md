@@ -1,12 +1,12 @@
 ---
 title: Webassembly Synthesizer
-date: '2021-01-26'
+date: "2021-01-26"
 excerpt: Creating a working synth with Rust using WASM
 ---
 
 <script>
-  import Image from '$lib/components/image.svelte';
-  import ImageList from '$lib/components/image-list.svelte';
+  import Image from "$lib/components/image.svelte";
+  import ImageList from "$lib/components/image-list.svelte";
 </script>
 
 ## Introduction
@@ -95,10 +95,10 @@ Firstly, the backend part of the syntesizer is presented: how it generates and u
 The basis of electronic music creation are oscillators; they are components which can create sound waves of different types, mainly using periodic functions. The current version of the synth supports 4 different types, from left to right: -`sine`: the trusty sine function -`square`: implemented by taking the sign of the sine function -`triangle`: implemented with sine and asin -`noise`: using random number generation
 
 <ImageList images={[
-  ['/images/posts/wasm-synth/sine.png', 'Sine Wave', '160px'],
-  ['/images/posts/wasm-synth/square.png', 'Square Wave', '160px'],
-  ['/images/posts/wasm-synth/triangle.png', 'Triangle Wave', '160px'],
-  ['/images/posts/wasm-synth/noise.png', 'Noise', '160px'],
+  ["/images/posts/wasm-synth/sine.png", "Sine Wave", "160px"],
+  ["/images/posts/wasm-synth/square.png", "Square Wave", "160px"],
+  ["/images/posts/wasm-synth/triangle.png", "Triangle Wave", "160px"],
+  ["/images/posts/wasm-synth/noise.png", "Noise", "160px"],
 ]} />
 
 Each oscillator returns 128 samples upon request, as the synthesis happens digitally. For this, the mathematical functions are sampled at 48 kHz, which is the standard sample rate defined by the AudioWorkletProcessor API.
@@ -249,11 +249,11 @@ The presented technique also works for providing input array parameters. Before 
 this.masterPtr = this.synthbox.get_master_vol_array_ptr();
 this.master = new Float64Array(this.memory.buffer, this.masterPtr, 128);
 // ...
-if (parameters['master'].length > 1) {
-  this.master.set(parameters['master']);
+if (parameters["master"].length > 1) {
+  this.master.set(parameters["master"]);
 } else {
   // for a constant volume, create a constant array
-  this.master.fill(parameters['master'][0], 0, 128);
+  this.master.fill(parameters["master"][0], 0, 128);
 }
 // call WASM function using master
 ```
@@ -277,14 +277,14 @@ The simplest one of the 3, updating the sequencer is achieved by sending differe
 ```javascript
 // UI Thread
 worklet.port.postMessage({
-  type: 'update_pattern',
+  type: "update_pattern",
   index: channelIndex,
   pattern: channelPattern,
 });
 
 // Worklet
 // ...
-case 'update_pattern':
+case "update_pattern":
   this.synthbox.update_channel_pattern(e.data.index, e.data.pattern);
   break;
 ```

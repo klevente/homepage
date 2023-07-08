@@ -1,12 +1,12 @@
 ---
 title: Website Redesign 2.0
-date: '2023-02-18'
+date: "2023-02-18"
 excerpt: Second time is the charm
 ---
 
 <script>
-  import Image from '$lib/components/image.svelte';
-  import ImageList from '$lib/components/image-list.svelte';
+  import Image from "$lib/components/image.svelte";
+  import ImageList from "$lib/components/image-list.svelte";
 </script>
 
 ## Introduction
@@ -28,7 +28,7 @@ To solve this issue, I followed Josh's solution to create a catch-all route name
 export const load = (async ({ params }) => {
   const post = (await import(`../../../content/posts/${params.slug}.md`)) as {
     metadata: Metadata;
-    default: SvelteComponentTyped<{}, {}, {}>;
+    default: ComponentType;
   };
 
   const {
@@ -47,12 +47,12 @@ export const load = (async ({ params }) => {
 ```svelte
 <!-- blog/[slug]/+page.svelte -->
 <script lang="ts">
-  import type { PageData } from './$types';
+  import type { PageData } from "./$types";
 
   export let data: PageData;
   let title: string;
   let date: string;
-  let content: SvelteComponentTyped<Empty, Empty, Empty>;
+  let content: ComponentType;
   // make `title`, `date` and `content` reactive, meaning that
   // every time `data` changes, they should be automatically updated,
   // resulting in a re-render of the post with the new metadata and content
@@ -98,11 +98,11 @@ After a bunch of trial and error, I managed to ~~hack together~~ build a pretty 
 
 However, then came the problems, mainly the ones with font rendering, which you have probably noticed when looking at the picture, namely that all text looks like when some water has been spilled onto a newspaper. This happens because of one simple reason: there is [no cross-platform way](https://bugzilla.mozilla.org/show_bug.cgi?id=640134) to tell the browser not to antialias text when rendering a font - especially a bitmap font.
 
-So why is this? After a bit of searching, we can easily find the [`font-smooth`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth) CSS property, though with a warning at the top of the page stating that  it is non-standard. What is more, is that it also recommends 2 other non-standard, vendor-prefixed selectors named `-webkit-font-smoothing` and `-moz-osx-font-smoothing`, which only work on MacOS interestingly. Unsurprisingly, when trying to use this any of these properties on a Windows machine, nothing will happen, and the font will still be antialiased (in DevTools, Chrome will even complain that it does not recognize the `font-smooth` property). However, on Mac, when using `font-smooth: never` and `-webkit-font-smoothing: none` will result in nice and crispy text for bitmap fonts.
+So why is this? After a bit of searching, we can easily find the [`font-smooth`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth) CSS property, though with a warning at the top of the page stating that it is non-standard. What is more, is that it also recommends 2 other non-standard, vendor-prefixed selectors named `-webkit-font-smoothing` and `-moz-osx-font-smoothing`, which only work on MacOS interestingly. Unsurprisingly, when trying to use this any of these properties on a Windows machine, nothing will happen, and the font will still be antialiased (in DevTools, Chrome will even complain that it does not recognize the `font-smooth` property). However, on Mac, when using `font-smooth: never` and `-webkit-font-smoothing: none` will result in nice and crispy text for bitmap fonts.
 
 <ImageList images={[
-['/images/posts/website-redesign-2.0/bitmap-font-windows.png', 'Bitmap rendering on Windows', '200px'],
-['/images/posts/website-redesign-2.0/bitmap-font-macos.png', 'Bitmap rendering on MacOS', '200px'],
+["/images/posts/website-redesign-2.0/bitmap-font-windows.png", "Bitmap rendering on Windows", "200px"],
+["/images/posts/website-redesign-2.0/bitmap-font-macos.png", "Bitmap rendering on MacOS", "200px"],
 ]}
 caption="Bitmap fonts on Windows and MacOS" />
 
@@ -129,6 +129,7 @@ As far as the themes itself go, I still opted for a light and dark one, mainly u
 As described in my last redesign post, I wanted a custom 404 page that Nginx would render in case the user navigated to a page that does not exist. For this, I followed [this Reddit comment](https://www.reddit.com/r/sveltejs/comments/o1tr4w/comment/h726jte/) as guide to create the page using Svelte, so I could use all my layouts and components for it.
 
 However, after updating to SvelteKit 1.0, this method no longer worked out-of-the-box, so I had to investigate a bit. Basically, I uncovered 2 entangled problems, one of which was there since my first SvelteKit version was deployed to Nginx:
+
 1. When navigating to any sub-routes first, ex. `https://klevente.dev/blog` would return `403 Forbidden`. This would also surface if the user disabled JavaScript, thus falling back to server-side navigation and clicking a link on the home page
 2. The 404 page's HTML would load, but for nested nonexistent routes (like `a/b`), the styles would be missing
 
@@ -150,6 +151,7 @@ server {
 ```
 
 The first problem occurred because:
+
 - `adapter-static` generates pages as files, not as directories with `index.html` inside of them (this can actually be configured with the [`trailingSlash`](https://kit.svelte.dev/docs/page-options#trailingslash) option)
 - As per the config, when a request comes in to a URL, ex. `/blog`, Nginx will first look for a file named the `blog`, then a directory named `blog`, then `blog.html`
 - Because the folder option is before the `.html` option, Nginx will determine that there is no folder with that URL inside the server root, so it'll throw a `403` error
@@ -176,10 +178,10 @@ The issue stems from the fact that the generated page references all assets (CSS
   ...
   <link rel="icon" href="./favicon.ico" />
   <meta name="viewport" content="width=device-width" />
-  <meta http-equiv="content-security-policy" content="">
-  <link href="./_app/immutable/assets/_layout-04928389.css" rel="stylesheet">
-  <link href="./_app/immutable/assets/_page-d4c74bdd.css" rel="stylesheet">
-  <link href="./_app/immutable/assets/page-heading-9fc13c5e.css" rel="stylesheet">
+  <meta http-equiv="content-security-policy" content="" />
+  <link href="./_app/immutable/assets/_layout-04928389.css" rel="stylesheet" />
+  <link href="./_app/immutable/assets/_page-d4c74bdd.css" rel="stylesheet" />
+  <link href="./_app/immutable/assets/page-heading-9fc13c5e.css" rel="stylesheet" />
 </head>
 ```
 
@@ -187,14 +189,14 @@ After a considerable amount of searching, I haven't found a way to configure `ad
 
 ```js
 /* scripts/convert-404-page-to-use-absolute-paths.js */
-import fs from 'fs/promises';
+import fs from "fs/promises";
 
-const path = 'build/404.html';
+const path = "build/404.html";
 const pattern = /\.\/_app/g;
-const replacement = '/_app';
+const replacement = "/_app";
 
 // top-level await works because `type: module` is set in `package.json`
-const page = await fs.readFile(path, 'utf-8');
+const page = await fs.readFile(path, "utf-8");
 const replaced = page.replaceAll(pattern, replacement);
 await fs.writeFile(path, replaced);
 ```
@@ -206,6 +208,7 @@ As I've had this website for 2 years now, I got pretty tired of manually deployi
 In the end, it turned out that this task is not much harder than ticking a checkbox on Vercel, as I just needed to use the [`rsync-deployments`](https://github.com/Burnett01/rsync-deployments) GitHub action, which just takes a few parameters identifying the host and authenticating the runner with it. When using it, make sure to place all sensitive information inside GitHub Secrets, so nothing gets exposed!
 
 Additionally, I'll leave here some steps on how to set up your SSH key, which might prove useful for others (and for myself as I always forget this):
+
 1. Create an SSH key on your server by running `ssh-keygen -t ed25519 -C "your_email@example.com"`
 2. Add the public key's contents as a new line into `~/.ssh/authorized_keys`
 3. Add the private key as a repository secret
@@ -220,11 +223,11 @@ That said, I just opted to add a simple click event listener to all code blocks,
 
 ```svelte
 <script lang="ts">
-  import { onMount } from 'svelte';
-  
+  import { onMount } from "svelte";
+
   onMount(() => {
-    document.querySelectorAll<HTMLElement>('pre code').forEach((elem) => {
-      elem.addEventListener('click', (event: MouseEvent) => {
+    document.querySelectorAll<HTMLElement>("pre code").forEach((elem) => {
+      elem.addEventListener("click", (event: MouseEvent) => {
         if (event.detail !== 3) {
           // only care about triple-clicks
           return;

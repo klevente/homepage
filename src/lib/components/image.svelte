@@ -2,7 +2,7 @@
   export let src: string;
   export let alt: string;
   export let caption: string | null = null;
-  export let width = '100%';
+  export let width = "100%";
 </script>
 
 <figure>

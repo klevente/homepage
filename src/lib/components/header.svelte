@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ThemePicker from '$lib/components/theme-picker.svelte';
+  import ThemePicker from "$lib/components/theme-picker.svelte";
 </script>
 
 <header>

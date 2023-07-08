@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { onMount, type ComponentType } from 'svelte';
-  import type { PageData } from './$types';
-  import { formatTitle } from '$lib/utils/format-title';
+  import { onMount, type ComponentType } from "svelte";
+  import type { PageData } from "./$types";
+  import { formatTitle } from "$lib/utils/format-title";
 
-  import '$lib/styles/blog.scss';
-  import '$lib/styles/code.scss';
+  import "$lib/styles/blog.scss";
+  import "$lib/styles/code.scss";
 
   export let data: PageData;
   let title: string;
@@ -13,8 +13,8 @@
   $: ({ title, date, content } = data);
 
   onMount(() => {
-    document.querySelectorAll<HTMLElement>('pre code').forEach((elem) => {
-      elem.addEventListener('click', (event: MouseEvent) => {
+    document.querySelectorAll<HTMLElement>("pre code").forEach((elem) => {
+      elem.addEventListener("click", (event: MouseEvent) => {
         if (event.detail !== 3) {
           return;
         }
