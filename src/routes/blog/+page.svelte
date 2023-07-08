@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { formatTitle } from '$lib/utils/format-title';
-  import PageHeading from '$lib/components/page-heading.svelte';
-  import type { PageServerData } from './$types';
+  import { formatTitle } from "$lib/utils/format-title";
+  import PageHeading from "$lib/components/page-heading.svelte";
+  import type { PageServerData } from "./$types";
 
   export let data: PageServerData;
   const { posts } = data;
 </script>
 
 <svelte:head>
-  <title>{formatTitle('Blog')}</title>
+  <title>{formatTitle("Blog")}</title>
 </svelte:head>
 
 <PageHeading>
@@ -35,7 +35,7 @@
 
 <style lang="scss">
   ul {
-    list-style-image: url('/images/icons/notepad-16.ico');
+    list-style-image: url("/images/icons/notepad-16.ico");
     padding-left: 20px;
     image-rendering: pixelated;
     display: flex;
@@ -56,7 +56,7 @@
       .excerpt {
         display: inline;
         &:before {
-          content: '- ';
+          content: "- ";
         }
       }
     }

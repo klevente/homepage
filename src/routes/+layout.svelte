@@ -1,7 +1,7 @@
 <script>
-  import '$lib/styles/main.scss';
-  import Header from '$lib/components/header.svelte';
-  import Footer from '$lib/components/footer.svelte';
+  import "$lib/styles/main.scss";
+  import Header from "$lib/components/header.svelte";
+  import Footer from "$lib/components/footer.svelte";
 </script>
 
 <Header />
@@ -14,9 +14,9 @@
 
 <svelte:head>
   <script>
-    if (typeof document !== 'undefined') {
-      if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add('dark');
+    if (typeof document !== "undefined") {
+      if (localStorage.theme === "dark") {
+        document.documentElement.classList.add("dark");
       }
     }
   </script>

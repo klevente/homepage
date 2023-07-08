@@ -33,14 +33,14 @@
 }
 
 /* code blocks */
-pre[class*='language-'] {
+pre[class*="language-"] {
   position: relative;
   padding: 1.25rem 0.5ch 0.25rem;
   overflow-x: auto;
   border: 1px solid var(--accent);
 
   &:before {
-    content: 'Code';
+    content: "Code";
     font-weight: 600;
 
     top: 0;
@@ -52,62 +52,62 @@ pre[class*='language-'] {
 }
 
 pre.language-bash:before {
-  content: 'shell';
+  content: "shell";
 }
 
 pre.language-css:before {
-  content: 'css';
+  content: "css";
 }
 
 pre.language-fs:before {
-  content: 'Project files';
+  content: "Project files";
 }
 
 pre.language-html:before {
-  content: 'html';
+  content: "html";
 }
 
 pre.language-js:before,
 pre.language-javascript:before {
-  content: 'javascript';
+  content: "javascript";
 }
 
 pre.language-json:before {
-  content: 'json';
+  content: "json";
 }
 
 pre.language-markdown:before {
-  content: 'markdown';
+  content: "markdown";
 }
 
 pre.language-nginx:before {
-  content: 'nginx config';
+  content: "nginx config";
 }
 
 pre.language-scss:before {
-  content: 'scss';
+  content: "scss";
 }
 
 pre.language-svelte:before {
-  content: 'svelte';
+  content: "svelte";
 }
 
 pre.language-rust:before {
-  content: 'rust';
+  content: "rust";
 }
 
 pre.language-toml:before {
-  content: 'toml';
+  content: "toml";
 }
 
 pre.language-ts:before,
 pre.language-typescript:before {
-  content: 'typescript';
+  content: "typescript";
 }
 
 pre.language-yaml:before,
 pre.language-yml:before {
-  content: 'yaml';
+  content: "yaml";
 }
 
 /* colors */

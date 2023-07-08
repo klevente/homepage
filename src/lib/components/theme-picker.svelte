@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { theme } from '$lib/utils/theme';
+  import { theme } from "$lib/utils/theme";
 
   function toggleTheme() {
     theme.toggle();
@@ -9,7 +9,7 @@
 <button class="theme-selector" on:click={toggleTheme} title="Switch Theme">
   <img src="/images/icons/theme-dark.ico" alt="Dark theme icon" />
   <img
-    class:transparent={$theme === 'dark'}
+    class:transparent={$theme === "dark"}
     src="/images/icons/theme-light.ico"
     alt="Light theme icon"
   />

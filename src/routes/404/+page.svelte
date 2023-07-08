@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { formatTitle } from '$lib/utils/format-title';
-  import PageHeading from '$lib/components/page-heading.svelte';
+  import { formatTitle } from "$lib/utils/format-title";
+  import PageHeading from "$lib/components/page-heading.svelte";
 </script>
 
 <svelte:head>
-  <title>{formatTitle('Not Found')}</title>
+  <title>{formatTitle("Not Found")}</title>
 </svelte:head>
 
 <PageHeading>
