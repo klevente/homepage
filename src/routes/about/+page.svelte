@@ -9,8 +9,8 @@
 
 <PageHeading>
   <div slot="left">
-    <h1>Levente Krizsán</h1>
-    <h2>Software Engineer</h2>
+    <h1>About me</h1>
+    <p>Some facts in a neatly-organized bulleted list.</p>
   </div>
   <img slot="right" class="header-image" src="/images/profile-64x64.png" alt="Profile" />
 </PageHeading>
