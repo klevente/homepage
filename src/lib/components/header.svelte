@@ -7,7 +7,9 @@
     <a class="home-link" href="/">
       <img src="/images/icons/computer-16.ico" alt="Home Icon" />Home
     </a>
-    <span />
+    <a href="/about">
+      <img src="/images/icons/about-me-icon-16.ico" alt="About Me Icon" />About
+    </a>
     <a href="/uses">
       <img src="/images/icons/computer-magnifying-glass-16.ico" alt="Uses Icon" />Uses
     </a>
@@ -32,8 +34,9 @@
 
     font-size: var(--font-size-header);
   }
-  span {
-    flex-grow: 1;
+
+  .home-link {
+    margin-right: auto;
   }
 
   img {
