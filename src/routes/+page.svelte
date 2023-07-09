@@ -1,14 +1,9 @@
 <script lang="ts">
   import { formatTitle } from "$lib/utils/format-title";
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
 
-  function rand(n = 1) {
-    return Math.random() * n;
-  }
-
-  function randV() {
-    return rand(100) + 20;
-  }
+  const rand = (n = 1) => Math.random() * n;
+  const randV = () => rand(100) + 20;
 
   type StaticPoint = {
     x: number;
@@ -91,6 +86,7 @@
       }
 
       this.hue += this.vhue * dt;
+      this.hue %= 360;
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -101,8 +97,7 @@
           ctx.lineTo(rect[j].x, rect[j].y);
         }
         ctx.closePath();
-        const hue = this.hue % 360;
-        ctx.strokeStyle = `hsl(${hue}, 50%, 50%)`;
+        ctx.strokeStyle = `hsl(${this.hue}, 50%, 50%)`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
       }
@@ -147,26 +142,63 @@
   <title>{formatTitle("Home")}</title>
 </svelte:head>
 
-<section>
-  <div class="screensaver-container">
-    <img src="/images/computer.png" width="400" alt="computer outline" />
-    <canvas bind:this={canvas} width="285" height="207" />
+<div class="container">
+  <div>
+    <h1>Levente Krizsán</h1>
+    <h2>Software Engineer</h2>
+    <p>Hey, there, I'm Levi! Thanks for stopping by!</p>
+    <ul>
+      <li>
+        <a href="/about">
+          <img src="/images/icons/about-me-icon-16.ico" alt="About Me Icon" />About me</a
+        >
+      </li>
+      <li>
+        <a href="/uses"
+          ><img src="/images/icons/computer-magnifying-glass-16.ico" alt="Uses Icon" />Uses</a
+        >
+      </li>
+      <li><a href="/blog"><img src="/images/icons/blog-16.ico" alt="Blog Icon" />Blog</a></li>
+    </ul>
   </div>
-</section>
+  <div class="screensaver-container">
+    <img src="/images/computer.png" width="350" alt="computer outline" />
+    <canvas bind:this={canvas} width="291" height="211" />
+  </div>
+</div>
 
 <style lang="scss">
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+  .screensaver-container {
+    position: relative;
+  }
+
   canvas {
     /*border: 1px solid red;*/
     position: absolute;
-    left: 51px;
-    top: 59px;
+    left: 27px;
+    top: 27px;
   }
 
   img {
     image-rendering: pixelated;
   }
 
-  .screensaver-container {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li img {
     position: relative;
+    top: 3px;
+    margin-right: 4px;
   }
 </style>
