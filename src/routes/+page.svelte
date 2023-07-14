@@ -171,8 +171,17 @@
   .container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     margin: 0 auto;
+  }
+
+  @media (min-width: 728px) {
+    .container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
   }
 
   .screensaver-container {
