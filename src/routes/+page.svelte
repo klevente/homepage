@@ -110,11 +110,8 @@
   let prevT: number;
 
   onMount(() => {
-    ctx = canvas.getContext("2d");
-
-    if (!ctx) {
-      return;
-    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    ctx = canvas.getContext("2d")!;
 
     rects = [
       new MovableRect(canvas.width, canvas.height),
