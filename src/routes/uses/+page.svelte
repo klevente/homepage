@@ -9,7 +9,10 @@
 
 <article>
   <PageHeading>
-    <h1 slot="left">Stuff I Use</h1>
+    <div slot="left">
+      <h1>Stuff I Use</h1>
+      <p>Here are the things I use in my professional and hobby programming endeavours.</p>
+    </div>
     <img
       slot="right"
       class="header-image"
