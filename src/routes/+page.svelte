@@ -106,14 +106,18 @@
 
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
-  let rect: MovableRect;
+  let rect1: MovableRect;
   let rect2: MovableRect;
   let prevT: number;
 
   onMount(() => {
     ctx = canvas.getContext("2d");
 
-    rect = new MovableRect(canvas.width, canvas.height);
+    if (!ctx) {
+      return;
+    }
+
+    rect1 = new MovableRect(canvas.width, canvas.height);
     rect2 = new MovableRect(canvas.width, canvas.height);
 
     prevT = performance.now();
@@ -129,8 +133,8 @@
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    rect.move(dt);
-    rect.draw(ctx);
+    rect1.move(dt);
+    rect1.draw(ctx);
     rect2.move(dt);
     rect2.draw(ctx);
 
