@@ -106,8 +106,7 @@
 
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
-  let rect1: MovableRect;
-  let rect2: MovableRect;
+  let rects: MovableRect[];
   let prevT: number;
 
   onMount(() => {
@@ -117,8 +116,10 @@
       return;
     }
 
-    rect1 = new MovableRect(canvas.width, canvas.height);
-    rect2 = new MovableRect(canvas.width, canvas.height);
+    rects = [
+      new MovableRect(canvas.width, canvas.height),
+      new MovableRect(canvas.width, canvas.height),
+    ];
 
     prevT = performance.now();
     requestAnimationFrame(animate);
@@ -133,10 +134,13 @@
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    rect1.move(dt);
-    rect1.draw(ctx);
-    rect2.move(dt);
-    rect2.draw(ctx);
+    for (const rect of rects) {
+      rect.move(dt);
+    }
+
+    for (const rect of rects) {
+      rect.draw(ctx);
+    }
 
     requestAnimationFrame(animate);
   }
