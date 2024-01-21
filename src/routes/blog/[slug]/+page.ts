@@ -20,7 +20,7 @@ export const load = (async ({ params }) => {
       title,
       date,
     };
-  } catch (e) {
+  } catch (ignored) {
     error(404);
   }
 }) satisfies PageLoad;
