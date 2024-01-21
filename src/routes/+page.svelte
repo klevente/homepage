@@ -16,7 +16,10 @@
     private vx: number;
     private vy: number;
 
-    constructor(private readonly width: number, private readonly height: number) {
+    constructor(
+      private readonly width: number,
+      private readonly height: number,
+    ) {
       this.x = rand(this.width);
       this.y = rand(this.height);
       this.vx = randV();
