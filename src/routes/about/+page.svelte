@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatTitle } from "$lib/utils/format-title";
+  import Link from "$lib/components/link.svelte";
   import PageHeading from "$lib/components/page-heading.svelte";
 </script>
 
@@ -16,14 +17,18 @@
 </PageHeading>
 <h3>Professionally:</h3>
 <section>
-  Full-stack software engineer at
-  <a rel="noopener noreferrer" target="_blank" href="https://snapsoft.io">SnapSoft</a>, working for
-  <a rel="noopener noreferrer" target="_blank" href="https://moonfare.com">Moonfare</a>.
+  Senior Rust Engineer at
+  <Link href="https://luzmo.com" newTab>Luzmo</Link>.
 </section>
 <h3>Previously:</h3>
 <section>
   <ul>
-    <li>Full-stack software engineer at Generali.</li>
+    <li>Full Stack Software Engineer at
+      <Link href="https://snapsoft.io" newTab>SnapSoft</Link>,
+      working for
+      <Link href="https://moonfare.com" newTab>Moonfare</Link>.
+    </li>
+    <li>Full Stack Software Engineer at <Link href="https://generali.com/" newTab>Generali</Link>.</li>
     <li>Budapest University of Technology and Economics Computer Engineering graduate.</li>
     <li>Seminar instructor at Budapest University of Technology and Economics.</li>
   </ul>
@@ -41,12 +46,12 @@
 <section>
   <ul>
     <li>
-      <a rel="noopener noreferrer" target="_blank" href="https://github.com/klevente">GitHub</a>
+      <Link href="https://github.com/klevente" newTab>GitHub</Link>
     </li>
     <li>
-      <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/klevente_"
-        >@klevente_
-      </a>
+      <Link href="https://twitter.com/klevente_" newTab
+      >@klevente_
+      </Link>
     </li>
     <li>Email: in my GitHub profile</li>
   </ul>
