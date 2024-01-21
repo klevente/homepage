@@ -23,12 +23,14 @@
 <h3>Previously:</h3>
 <section>
   <ul>
-    <li>Full Stack Software Engineer at
-      <Link href="https://snapsoft.io" newTab>SnapSoft</Link>,
-      working for
+    <li>
+      Full Stack Software Engineer at
+      <Link href="https://snapsoft.io" newTab>SnapSoft</Link>, working for
       <Link href="https://moonfare.com" newTab>Moonfare</Link>.
     </li>
-    <li>Full Stack Software Engineer at <Link href="https://generali.com/" newTab>Generali</Link>.</li>
+    <li>
+      Full Stack Software Engineer at <Link href="https://generali.com/" newTab>Generali</Link>.
+    </li>
     <li>Budapest University of Technology and Economics Computer Engineering graduate.</li>
     <li>Seminar instructor at Budapest University of Technology and Economics.</li>
   </ul>
@@ -49,9 +51,7 @@
       <Link href="https://github.com/klevente" newTab>GitHub</Link>
     </li>
     <li>
-      <Link href="https://twitter.com/klevente_" newTab
-      >@klevente_
-      </Link>
+      <Link href="https://twitter.com/klevente_" newTab>@klevente_</Link>
     </li>
     <li>Email: in my GitHub profile</li>
   </ul>
