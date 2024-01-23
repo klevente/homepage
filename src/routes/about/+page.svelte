@@ -17,22 +17,22 @@
 </PageHeading>
 <h3>Professionally:</h3>
 <section>
-  Senior Rust Engineer at
+  Senior Rust Engineer @
   <Link href="https://luzmo.com" newTab>Luzmo</Link>.
 </section>
 <h3>Previously:</h3>
 <section>
   <ul>
     <li>
-      Full Stack Software Engineer at
+      Full Stack Software Engineer @
       <Link href="https://snapsoft.io" newTab>SnapSoft</Link>, working for
       <Link href="https://moonfare.com" newTab>Moonfare</Link>.
     </li>
     <li>
-      Full Stack Software Engineer at <Link href="https://generali.com/" newTab>Generali</Link>.
+      Full Stack Software Engineer @ <Link href="https://generali.com/" newTab>Generali</Link>.
     </li>
     <li>Budapest University of Technology and Economics Computer Engineering graduate.</li>
-    <li>Seminar instructor at Budapest University of Technology and Economics.</li>
+    <li>Seminar instructor @ Budapest University of Technology and Economics.</li>
   </ul>
 </section>
 <h3>Personally:</h3>
