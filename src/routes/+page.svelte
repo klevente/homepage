@@ -206,7 +206,6 @@
   }
 
   canvas {
-    /*border: 1px solid red;*/
     animation: fadein 3s ease-in-out;
     position: absolute;
     left: 27px;
