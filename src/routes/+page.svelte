@@ -196,8 +196,17 @@
     position: relative;
   }
 
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   canvas {
-    /*border: 1px solid red;*/
+    animation: fadein 3s ease-in-out;
     position: absolute;
     left: 27px;
     top: 27px;

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { formatTitle } from "$lib/utils/format-title";
   import PageHeading from "$lib/components/page-heading.svelte";
+  import Link from "$lib/components/link.svelte";
 </script>
 
 <svelte:head>
@@ -26,129 +27,173 @@
   <h3>Languages/Frameworks</h3>
   <ul>
     <li>
-      JavaScript/TypeScript: My most used languages currently. Mainly working with React, Express
-      and Nest.js professionally, but I also like to use SvelteKit and Next.js for personal
-      projects.
-    </li>
-    <li>
-      Java/Kotlin: My runner-up duo in most-used languages. I mainly used them to build Spring-based
-      backend applications.
-    </li>
-    <li>
-      Rust: Language I'm most interested in, because of its very strong type system and compile-time
-      memory safety. Have some experience in building tiny CLI apps and backends with <a
-        href="https://actix.rs/">Actix</a
+      Rust: The primary language I use both professionally and personally. At work I use <Link
+        href="https://github.com/seanmonstar/warp"
+        newTab>warp</Link
+      >, but also have experience building web apps with <Link href="https://actix.rs/" newTab
+        >Actix</Link
       >
-      and <a href="https://github.com/tokio-rs/axum">Axum</a>.
+      and <Link href="https://github.com/tokio-rs/axum" newTab>Axum</Link>.
+    </li>
+    <li>
+      JavaScript/TypeScript: My second-most used pair of languages. Worked a lot with <Link
+        href="https://react.dev/"
+        newTab>React</Link
+      >, <Link href="https://expressjs.com/" newTab>Express</Link> and <Link
+        href="https://nestjs.com/"
+        newTab>Nest.js</Link
+      > professionally, nowadays I like to use <Link href="https://kit.svelte.dev/" newTab
+        >SvelteKit</Link
+      >, <Link href="https://nextjs.org/" newTab>Next.js</Link> and <Link
+        href="https://remix.run/"
+        newTab>Remix</Link
+      > for personal projects.
+    </li>
+    <li>
+      Java/Kotlin: The first languages I used in professional projects, for building <Link
+        href="https://spring.io/"
+        newTab>Spring</Link
+      >-based web applications.
     </li>
   </ul>
 
   <h3>Tools</h3>
   <ul>
     <li>
-      <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>/<a
-        href="https://www.jetbrains.com/webstorm/">WebStorm</a
-      >/<a href="https://www.jetbrains.com/clion/">CLion</a>: for most of my development work, I use
-      IntelliJ products. I only use a few extensions as they have most features I need built-in:
+      <Link href="https://jetbrains.com/idea/" newTab>IntelliJ IDEA</Link>
+      /
+      <Link href="https://jetbrains.com/webstorm/" newTab>WebStorm</Link>
+      /
+      <Link href="https://jetbrains.com/rust/" newTab>RustRover</Link>: for most of my development
+      work, I use IntelliJ products. Only using a few extensions as they have most features I desire
+      built-in:
       <ul>
         <li>
-          <a href="https://plugins.jetbrains.com/plugin/18682-catppuccin-theme">Catppuccin</a>:
-          Pleasant, warm pastel-y color scheme.
+          <Link href="https://plugins.jetbrains.com/plugin/18682-catppuccin-theme" newTab
+            >Catppuccin</Link
+          >: Pleasant, warm pastel-y color scheme.
         </li>
         <li>
-          <a href="https://plugins.jetbrains.com/plugin/10321-nord">Nord</a>: Cool (<del
+          <Link href="https://plugins.jetbrains.com/plugin/10321-nord" newTab>Nord</Link>: Cool (<del
             >literally</del
           >) color scheme.
-        </li>
-        <li>
-          <a href="https://www.jetbrains.com/rust/">IntelliJ Rust</a>: Plugin for CLion,
-          facilitating Rust development.
         </li>
       </ul>
     </li>
     <li>
-      <a href="https://code.visualstudio.com/">VSCode</a>: My go-to text editor when I want to
-      quickly edit some files or work with LaTeX. I use the following extensions and color schemes:
+      <Link href="https://code.visualstudio.com/" newTab>VSCode</Link>: My go-to text editor when I
+      want to quickly edit some files or work with LaTeX. I use the following extensions and color
+      schemes:
       <ul>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">
-            EditorConfig</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig"
+            newTab
+          >
+            EditorConfig</Link
           >: Enables support for <code>.editorconfig</code> files.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=sainnhe.everforest">
-            Everforest</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=sainnhe.everforest"
+            newTab
+          >
+            Everforest</Link
           >: Nice pastel green colors, easy on the eyes.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.hexeditor">
-            Hex Editor</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.hexeditor"
+            newTab
+          >
+            Hex Editor</Link
           >: For easily checking the content of binary files.
         </li>
         <li>
-          <a
+          <Link
             href="https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings"
           >
-            IntelliJ IDEA Keybindings</a
+            IntelliJ IDEA Keybindings</Link
           >: as I'm used to IntelliJ keybindings, this extension helps me use shortcuts I already
           know.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities">
-            LaTeX Utilities</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities"
+            newTab
+          >
+            LaTeX Utilities</Link
           >: Add-on for LaTeX Workshop, adding more nice-to-have features.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">
-            LaTeX Workshop
-          </a>: Extension for LaTeX support in VSCode.
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop"
+            newTab
+          >
+            LaTeX Workshop</Link
+          >: Extension for LaTeX support in VSCode.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">
-            Markdown All in One</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"
+            newTab
+          >
+            Markdown All in One</Link
           >: Adds convenient Markdown editing features, like better list handling and table
           formatting.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf">
-            Markdown PDF</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf"
+            newTab
+          >
+            Markdown PDF</Link
           >: Converts a Markdown document into a PDF, useful when sharing with others.
         </li>
         <li>
-          <a href="https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces">
-            Trailing Spaces</a
+          <Link
+            href="https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces"
+            newTab
+          >
+            Trailing Spaces</Link
           >: As VSCode does not remove trailing spaces by default, this extension helps me get rid
           of them effectively.
         </li>
       </ul>
     </li>
     <li>
-      <a href="https://github.com/tonsky/FiraCode">Fira Code</a>: My favourite monospace font; I
-      cannot live without <a href="https://en.wikipedia.org/wiki/Ligature_(writing)">ligatures</a>.
+      <Link href="https://github.com/tonsky/FiraCode" newTab>Fira Code</Link>: My favourite
+      monospace font; I cannot live without
+      <Link href="https://en.wikipedia.org/wiki/Ligature_(writing)" newTab>ligatures</Link>.
     </li>
   </ul>
 
   <h2>Hardware</h2>
   <ul>
     <li>
-      <a href="https://candykeys.com/product/race-3-iso-uk">Vortex Race 3 Keyboard</a>: Retro-style
-      75% keyboard; I have the MX Brown version.
+      <Link href="https://vortexgear.store/products/race-3-micro-usb" newTab
+        >Vortex Race 3 Keyboard</Link
+      >: Retro-style 75% keyboard; I have the MX Brown version.
     </li>
     <li>
-      <a
+      <Link
         href="https://www.tesmart.com/products/tesmart-hdmi-kvm-switcher-2-computer-to-1-monitor-tv-4k-60hz"
-        >TESmart KVM Switch</a
+        >TESmart KVM Switch</Link
       >: For switching between 2 computers effortlessly.
     </li>
   </ul>
 
   <h2>Utility</h2>
   <ul>
-    <li><a href="https://obsidian.md/">Obsidian</a>: For Markdown-based note-taking.</li>
     <li>
-      <a href="https://github.com/Schniz/fnm">fnm</a>: Enables automatic switching between Node
-      versions when <code>cd</code>ing into a directory with a <code>.nvmrc</code> file. Much faster
-      than <a href="https://github.com/nvm-sh/nvm">nvm</a>, as it's written in Rust, not shell.
+      <Link href="https://obsidian.md/" newTab>Obsidian</Link>: For Markdown-based note-taking.
+    </li>
+    <li>
+      <Link href="https://github.com/Schniz/fnm" newTab>fnm</Link>: Enables automatic switching
+      between Node versions when <code>cd</code>ing into a directory with a <code>.nvmrc</code>
+      file. Much faster than
+      <Link href="https://github.com/nvm-sh/nvm" newTab>nvm</Link>
+      , as it's written in Rust, not shell.
     </li>
   </ul>
 </article>
