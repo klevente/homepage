@@ -190,8 +190,8 @@
     </li>
     <li>
       <Link href="https://mise.jdx.dev/" newTab>mise</Link>: Enables seamless version switching of
-      tools when navigating between projects, by using a <code>.mise.toml</code> or
-      <code>.tool-versions</code> file.
+      tools when navigating between projects by using <code>.mise.toml</code> or
+      <code>.tool-versions</code> files.
     </li>
   </ul>
 </article>
