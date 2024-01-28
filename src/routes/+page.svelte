@@ -151,10 +151,17 @@
 </svelte:head>
 
 <div class="container">
+  <div class="screensaver-container">
+    <img src="/images/computer.png" width="350" alt="computer outline" />
+    <canvas bind:this={canvas} width="291" height="211" />
+  </div>
   <div>
     <h1>Levente Krizsán</h1>
     <h2>Software Engineer</h2>
-    <p>Hey, there, I'm Levi! Thanks for stopping by!</p>
+    <p>
+      Greetings! I'm Levi, a Rust and web enthusiast. Feel free to explore this tiny corner of the
+      Internet:
+    </p>
     <ul>
       <li>
         <a href="/about">
@@ -168,10 +175,6 @@
       </li>
       <li><a href="/blog"><img src="/images/icons/blog-16.ico" alt="Blog Icon" />Blog</a></li>
     </ul>
-  </div>
-  <div class="screensaver-container">
-    <img src="/images/computer.png" width="350" alt="computer outline" />
-    <canvas bind:this={canvas} width="291" height="211" />
   </div>
 </div>
 
@@ -194,6 +197,7 @@
 
   .screensaver-container {
     position: relative;
+    min-width: 350px;
   }
 
   @keyframes fadein {
