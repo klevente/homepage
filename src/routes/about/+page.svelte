@@ -50,9 +50,6 @@
     <li>
       <Link href="https://github.com/klevente" newTab>GitHub</Link>
     </li>
-    <li>
-      <Link href="https://twitter.com/klevente_" newTab>@klevente_</Link>
-    </li>
     <li>Email: in my GitHub profile</li>
   </ul>
 </section>
