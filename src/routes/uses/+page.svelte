@@ -189,11 +189,9 @@
       <Link href="https://obsidian.md/" newTab>Obsidian</Link>: For Markdown-based note-taking.
     </li>
     <li>
-      <Link href="https://github.com/Schniz/fnm" newTab>fnm</Link>: Enables automatic switching
-      between Node versions when <code>cd</code>ing into a directory with a <code>.nvmrc</code>
-      file. Much faster than
-      <Link href="https://github.com/nvm-sh/nvm" newTab>nvm</Link>
-      , as it's written in Rust, not shell.
+      <Link href="https://mise.jdx.dev/" newTab>mise</Link>: Enables seamless version switching of
+      tools when navigating between projects, by using a <code>.mise.toml</code> or
+      <code>.tool-versions</code> file.
     </li>
   </ul>
 </article>
