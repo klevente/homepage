@@ -8,6 +8,9 @@ const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
   preprocess: [
+    mdsvex({
+      extensions: [".md"],
+    }),
     sveltePreprocess({
       scss: {
         prependData: `@import 'src/lib/styles/vars.scss';`,
@@ -15,9 +18,6 @@ const config = {
       postcss: {
         plugins: [autoprefixer()],
       },
-    }),
-    mdsvex({
-      extensions: [".md"],
     }),
   ],
 
