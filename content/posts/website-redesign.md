@@ -143,7 +143,7 @@ Unfortunately, the initialization of the `theme` store happens just a tiny bit l
 
 In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avoid-fotc/), which is to put a tiny code snippet inside the `head` for every page, that puts the appropriate theme class on the root element. Because this JavaScript gets executed before the actual site's contents are rendered, there will be no bright flash haunting the user. The following code illustrates exactly how I implemented this logic.
 
-```sveltehtml
+```svelte
 <!-- routes/__layout.svelte -->
 <svelte:head>
   <script>
@@ -164,7 +164,7 @@ In order to fix this problem, I found Shawn's [solution](https://www.swyx.io/avo
 
 The last piece of the puzzle is actually having a component on screen that calls `theme.toggle()` whenever the user clicks on it. I encapsulated this logic inside a `ThemePicker` component, which handles theme changes and provides information about the currently selected theme to the user. This is achieved by having two different icons that transition from one to the other when the user clicks on them, alongside with actually changing the site's theme. I got the transition from [this](http://css3.bradshawenterprises.com/cfimg/) guide, you can check out below how it all comes together.
 
-```sveltehtml
+```svelte
 <!-- lib/components/theme-picker.svelte -->
 <script>
   import { theme } from "$lib/util/theme";
