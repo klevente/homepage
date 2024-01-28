@@ -44,7 +44,7 @@ export const load = (async ({ params }) => {
 }) satisfies PageLoad;
 ```
 
-```svelte
+```sveltehtml
 <!-- blog/[slug]/+page.svelte -->
 <script lang="ts">
   import type { PageData } from "./$types";
@@ -221,7 +221,7 @@ The main reason I went for this instead of a "Copy" button inside code blocks is
 
 That said, I just opted to add a simple click event listener to all code blocks, which selects the contents in case the user triple-clicked:
 
-```svelte
+```sveltehtml
 <script lang="ts">
   import { onMount } from "svelte";
 
