@@ -125,6 +125,13 @@
     requestAnimationFrame(animate);
   });
 
+  function onCanvasClick() {
+    if (rects.length > 20) {
+      return;
+    }
+    rects.push(new MovableRect(canvas.width, canvas.height));
+  }
+
   function animate(t: number) {
     if (!canvas) {
       return;
@@ -153,7 +160,7 @@
 <div class="container">
   <div class="screensaver-container">
     <img src="/images/computer.png" width="350" alt="computer outline" />
-    <canvas bind:this={canvas} width="291" height="211" />
+    <canvas on:click={() => onCanvasClick()} bind:this={canvas} width="291" height="211" />
   </div>
   <div>
     <h1>Levente Krizsán</h1>
