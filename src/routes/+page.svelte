@@ -127,7 +127,7 @@
 
   function onCanvasClick() {
     if (rects.length > 20) {
-      return;
+      rects.shift();
     }
     rects.push(new MovableRect(canvas.width, canvas.height));
   }
@@ -205,6 +205,12 @@
   .screensaver-container {
     position: relative;
     min-width: 350px;
+
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   @keyframes fadein {
