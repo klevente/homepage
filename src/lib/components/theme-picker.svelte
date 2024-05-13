@@ -32,7 +32,7 @@
     margin: 0;
     position: absolute;
     left: 0;
-    top: 2px; // push the image down a bit so it is centered
+    top: 3px; // push the image down a bit so it is centered
     @media screen and (prefers-reduced-motion: no-preference) {
       -webkit-transition: opacity 150ms ease-in-out;
       -moz-transition: opacity 150ms ease-in-out;
