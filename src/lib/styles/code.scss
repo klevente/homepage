@@ -40,7 +40,7 @@ pre[class*="language-"] {
   border: 1px solid var(--accent);
 
   &:before {
-    content: "Code";
+    content: "code";
     font-weight: 600;
 
     top: 0;
@@ -55,6 +55,14 @@ pre.language-bash:before {
   content: "shell";
 }
 
+pre.language-cpp:before {
+  content: "c++";
+}
+
+pre.language-csharp:before {
+  content: "c#";
+}
+
 pre.language-css:before {
   content: "css";
 }
@@ -63,8 +71,20 @@ pre.language-fs:before {
   content: "Project files";
 }
 
+pre.language-go:before {
+  content: "go";
+}
+
+pre.language-haskell:before {
+  content: "haskell";
+}
+
 pre.language-html:before {
   content: "html";
+}
+
+pre.language-java:before {
+  content: "java";
 }
 
 pre.language-js:before,

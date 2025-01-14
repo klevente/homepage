@@ -161,13 +161,21 @@ code {
   // word-break: break-word;
 }
 
-/* inline code */
-:not(pre) > code {
-  &:before {
-    content: "`";
-  }
-
-  &:after {
-    content: "`";
-  }
+h1 code {
+  font-size: 1em;
+}
+h2 code {
+  font-size: 1em;
+}
+h3 code {
+  font-size: 1em;
+}
+h4 code {
+  font-size: 1em;
+}
+h5 code {
+  font-size: 1em;
+}
+h6 code {
+  font-size: 1em;
 }
